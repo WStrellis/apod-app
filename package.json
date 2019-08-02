@@ -1,0 +1,18 @@
+{
+  "name": "apod-app",
+  "version": "1.0.0",
+  "description": "Display space photos from NASA APOD API",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WStrellis/apod-app.git"
+  },
+  "author": "Westley Strellis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WStrellis/apod-app/issues"
+  },
+  "homepage": "https://github.com/WStrellis/apod-app#readme"
+}
