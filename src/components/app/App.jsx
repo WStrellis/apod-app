@@ -1,6 +1,13 @@
 import React from 'react';
 import logo from '../../logo.svg';
 import styles from './App.module.scss';
+import styled from "styled-components";
+
+const  Div = styled.div`
+  height: 200px;
+  width: 300px;
+  background-color: blue;
+`;
 
 function App() {
   return (
@@ -19,6 +26,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Div/>
     </div>
   );
 }
