@@ -1,0 +1,5 @@
+- make all components
+
+- add componentWillUpdate() to App .jsx that calls the NASA api when the user selects a new date
+
+- add constructor function to all class components 
