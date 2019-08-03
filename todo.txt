@@ -2,4 +2,4 @@
 
 - add componentWillUpdate() to App .jsx that calls the NASA api when the user selects a new date
 
-- add constructor function to all class components 
+- need to track image rotation, normal/hd image, and modal state somewhere.... figure out logic

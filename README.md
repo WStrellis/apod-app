@@ -29,16 +29,18 @@ This is a React app which displays photos of space from the NASA APOD API
   A star used as a decoration for the backround.
 
 - MediaWrapper  
-  Parent of ImgBlock and Copyright. Used to align Copyright with ImgBlockContainer.
-
-- ImgBlockContainer  
-  Parent of ImgBlock. Creates purple border with padding
+  Parent of ImgBlock and Copyright. Used to align Copyright with ImgBlockContainer.  
+  Props:  
+  - URL
+  - HDURL
+  - copyright
 
 - ImgBlock  
   A div with the background-img: src set to the url passed as props.  
   Props:  
   - hdurl
   - url
+  - title ( used for alt text)
 
 - ImgControls  
 Used to rotate the img or switch versions

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import styles from './App.module.scss';
-import styled from "styled-components"
+import styled from "styled-components";
 
 import Potd from "../potd.jsx";
 
@@ -27,10 +27,7 @@ class App extends React.Component {
     })
     // if there is an error show the error message
     .catch( err =>{
-      if( !axios.isCancel(err)){
-        // only do this if the error was not produced by the component unmounting
       this.setState({loading : false, err})
-      }
     })
   } // end componentDidMount
 
