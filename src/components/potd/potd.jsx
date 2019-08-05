@@ -1,8 +1,9 @@
 
 import React, { Component } from 'react';
-import ImgFig from "./imgFig.jsx"; // takes url, title, and copyright as props
-import PictureTitle from "./picture_title.jsx"; // takes title as props
-import Explanation from "./explanation.jsx"; // takes explanation as props
+
+import MediaWrapper from "../media_wrapper/media_wrapper.jsx"; 
+import MediaTitle from "../media_title/media_title.jsx"; 
+import Explanation from "../explanation/explanation.jsx"; 
 
 export default class Potd extends Component {
 
@@ -15,8 +16,8 @@ export default class Potd extends Component {
 
     return (
       <>
-        <PictureTitle pTitle={title}/>
-        <ImgFig title={title} url={url} copyright={copyright}/>
+        <MediaTitle mtitle={title}/>
+        <MediaWrapper url={url} copyright={copyright}/>
         <Explanation explanation={explanation}/>
       </>
     )

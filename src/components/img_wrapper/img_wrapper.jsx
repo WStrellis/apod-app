@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+import styles from "../../styles/_variables.scss";
 
-const StyledImg = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: scale-down;
-  object-position: center;
-  image-rendering: crips-edges;
-`;
+import ImgBlock from "../img_block/img_block.jsx";
 
 const ImgWrapDiv = styled.div`
   height: 400px;
@@ -16,12 +11,12 @@ const ImgWrapDiv = styled.div`
   padding: 10px;
 `;
 
-export default class ImgBlock extends Component {
+export default class ImgWrapper extends Component {
 
   render() {
     return (
       <ImgWrapDiv>
-       <StyledImg src={this.props.url} ></StyledImg>
+        <ImgBlock title={this.props.title} url={this.props.url} hdurl={this.props.hdurl}></ImgBlock>
       </ImgWrapDiv>
     )
   }

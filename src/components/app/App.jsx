@@ -3,7 +3,8 @@ import axios from "axios";
 import styles from './App.module.scss';
 import styled from "styled-components";
 
-import Potd from "../potd.jsx";
+import Potd from "../potd/potd.jsx";
+
 
 class App extends React.Component {
   constructor(props) {

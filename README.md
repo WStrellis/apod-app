@@ -34,18 +34,23 @@ This is a React app which displays photos of space from the NASA APOD API
   - URL
   - HDURL
   - copyright
+  - title
 
 - ImgBlock  
-  A div with the background-img: src set to the url passed as props.  
+  An `<img>` to display the photo of the day.  
   Props:  
   - hdurl
   - url
-  - title ( used for alt text)
+  - title ( used for alt text and title text)
 
 - ImgControls  
 Used to rotate the img or switch versions
 
-- PictureTitle  
+- Copyright  
+  Props:  
+  - copyright
+
+- MediaTitle  
   An h1 containing the title of the photo.  
   Props:  
   - title
@@ -82,9 +87,6 @@ Used to rotate the img or switch versions
 
 - AppTitle  
   Text at top of screen on tablet and desktop
-
-- ExplanationContainer  
-  Parent of Explanation
 
 - Explanation  
   Description of the photo  
