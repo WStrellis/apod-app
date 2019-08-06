@@ -3,10 +3,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-export default class Example extends React.Component {
+export default class DateSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

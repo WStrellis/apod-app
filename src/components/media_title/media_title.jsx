@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const MTContainer = styled.div`
   border: 1px solid red;
+  text-align: center;
 `;
 
 export default class MediaTitle extends Component {

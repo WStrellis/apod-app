@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 
+import AppHeader from "../header/header.jsx";
 import MediaWrapper from "../media_wrapper/media_wrapper.jsx"; 
 import MediaTitle from "../media_title/media_title.jsx"; 
 import Explanation from "../explanation/explanation.jsx"; 
@@ -11,11 +12,12 @@ export default class Potd extends Component {
     return <div>...loading</div>
   };
 
-  renderPotd() {
+  renderSuccess() {
     const {title, copyright=null, url, date, explanation, media_type, hdurl } = this.props.pod;
 
     return (
       <>
+        <AppHeader/>
         <MediaTitle mtitle={title}/>
         <MediaWrapper url={url} copyright={copyright}/>
         <Explanation explanation={explanation}/>
@@ -31,7 +33,7 @@ export default class Potd extends Component {
     if( this.props.loading){
       return this.renderLoading();
     } else if (this.props.pod){
-      return this.renderPotd();
+      return this.renderSuccess();
     } else {
       return this.renderErr();
     }

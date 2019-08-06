@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
+/**
+ * Renders the photo of the day
+ */
 
 const StyledImg = styled.img`
   height: 100%;
@@ -9,20 +14,18 @@ const StyledImg = styled.img`
   image-rendering: crips-edges;
 `;
 
-const ImgWrapDiv = styled.div`
-  height: 400px;
-  width: 400px;
-  border: 1px solid #ff0000;
-  padding: 10px;
-`;
-
+ /** @components */
 export default class ImgBlock extends Component {
 
   render() {
     return (
-      <ImgWrapDiv>
-       <StyledImg src={this.props.url} ></StyledImg>
-      </ImgWrapDiv>
+       <StyledImg src={this.props.url} title={this.props.title} alt={this.props.title}></StyledImg>
     )
   }
-}
+}// end ImgBlock
+
+ImgBlock.propTypes = {
+  /* URL : the url to the image */
+  url : PropTypes.string,
+  title : PropTypes.string
+};

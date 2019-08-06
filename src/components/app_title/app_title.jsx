@@ -8,12 +8,16 @@ const TitleContainer = styled.div`
   margin: 0 auto;
 `;
 
+const StyledH1 = styled.h1`
+  text-align: center;
+`;
+
 export default class AppTitle extends Component {
 
   render() {
     return (
       <TitleContainer>
-        <h1>Astronomy Photo of The Day</h1>
+        <StyledH1>Astronomy Photo of The Day</StyledH1>
       </TitleContainer>
     )
   }

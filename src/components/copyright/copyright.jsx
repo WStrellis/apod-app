@@ -9,7 +9,7 @@ export default class Copyright extends Component {
   render() {
     return (
       <CopyrightP>
-        Image Credit: {this.props.copyright} 
+        Media Credit: {this.props.copyright} 
       </CopyrightP>
     )
   }
