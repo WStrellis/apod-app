@@ -7,11 +7,11 @@ import PropTypes from "prop-types";
  */
 
 const StyledImg = styled.img`
-  height: 100%;
+  height: auto;
   width: 100%;
   object-fit: scale-down;
   object-position: center;
-  image-rendering: crips-edges;
+  image-rendering: crisp-edges;
 `;
 
  /** @components */

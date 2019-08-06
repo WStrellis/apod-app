@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import "../../styles/index.scss";
-import { mediaBP } from "../../styles/styles";
+// import { mediaBP } from "../../styles/styles";
 import styled from "styled-components";
 
 import ImgBlock from "../img_block/img_block.jsx";
@@ -13,15 +13,16 @@ import Copyright from "../copyright/copyright.jsx";
 const ImgWrapDiv = styled.div`
   max-height: 440px;
   max-width: 250px;
-  border: 1px solid #ff0000;
+  border: 1px solid ${props => props.theme.colors.primaryPurple};
+  background-color: ${props => props.theme.colors.primaryPurpleTransparent};
   padding: 10px;
 
-  @media screen and ( ${mediaBP.medium}){
+  @media screen and ( ${props => props.theme.mediaBP.medium}){
     max-height:  470px;
     max-width: 700px;
   }
 
-  @media screen and ( ${mediaBP.large}){
+  @media screen and ( ${props => props.theme.mediaBP.large}){
     max-height:  620px;
     max-width: 90%;
 `;
@@ -38,6 +39,7 @@ const MediaContainer = styled.div`
 
 /**  @component */
 export default class MediaWrapper extends Component {
+
 
   render() {
     return (
