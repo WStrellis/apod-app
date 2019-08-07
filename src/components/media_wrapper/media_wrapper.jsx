@@ -10,21 +10,24 @@ import ImgBlock from "../img_block/img_block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 
 
+  // max-width: 250px;
+  // max-height: 300px;
+  // @media screen and ( ${props => props.theme.mediaBP.medium}){
+    // max-height:  700px;
+  // @media screen and ( ${props => props.theme.mediaBP.large}){
+    // max-height:  1000px;
+    // max-width: 1150px;
 const ImgWrapDiv = styled.div`
-  max-height: 440px;
-  max-width: 250px;
+  display: flex;
+  max-width: 80%;
   border: 1px solid ${props => props.theme.colors.primaryPurple};
   background-color: ${props => props.theme.colors.primaryPurpleTransparent};
+  margin: 0 auto;
   padding: 10px;
 
   @media screen and ( ${props => props.theme.mediaBP.medium}){
-    max-height:  470px;
-    max-width: 700px;
-  }
-
-  @media screen and ( ${props => props.theme.mediaBP.large}){
-    max-height:  620px;
     max-width: 90%;
+  }
 `;
 
 

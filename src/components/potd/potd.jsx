@@ -17,7 +17,7 @@ export default class Potd extends Component {
 
     return (
       <>
-        <AppHeader/>
+        <AppHeader date={this.props.date} cb={this.props.cb}/>
         <MediaTitle mtitle={title}/>
         <MediaWrapper url={url} copyright={copyright}/>
         <Explanation explanation={explanation}/>

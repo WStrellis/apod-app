@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class DateSelector extends React.Component {
+ /*  
   constructor(props) {
     super(props);
     this.state = {
@@ -11,18 +12,26 @@ export default class DateSelector extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-
+ */ 
+/* 
   handleChange(date) {
     this.setState({
       startDate: date
     });
-  }
-
+   }
+*/
   render() {
     return (
       <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange}
+        selected={this.props.date}
+        onChange={this.props.cb}
+        dateFormat="yyyy-MM-dd"
+        // display the datepicker as a modal
+        withPortal
+        //enable year dropdown
+        showYearDropdown 
+        scrollableYearDropdown
+        // yearDropdownItemNumber={10}
       />
     );
   }
