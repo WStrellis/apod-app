@@ -26,7 +26,12 @@ export default class Potd extends Component {
   };
 
   renderErr(){
-    return <div>An error occured: {this.props.err.message}</div>
+    return (
+      <>
+        <h1>An error occured: {this.props.err.response.data.error.code}</h1>
+        <p>{this.props.err.response.data.error.message}</p>
+      </>
+    )
     }
   
   render (){

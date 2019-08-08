@@ -25,7 +25,7 @@ export default class DateSelector extends React.Component {
       <DatePicker
         selected={this.props.date}
         onChange={this.props.cb}
-        dateFormat="yyyy-MM-dd"
+        dateFormat="MMMM, d yyyy"
         // display the datepicker as a modal
         withPortal
         //enable year dropdown

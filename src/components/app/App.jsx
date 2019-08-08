@@ -9,29 +9,39 @@ import Potd from "../potd/potd.jsx";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading : true,
-                              selectedDate : new Date(),
-                            };
+    this.state = { 
+      loading : true,
+      selectedDate : new Date(),
+    };
    
     this.changeDate = this.changeDate.bind(this);
+    this.fetchAPODdata = this.fetchAPODdata.bind(this);
     }
 
     changeDate(d){
-      console.log("changeDate called")
+      console.log(`changeDate called. Value: ${ d } . Typeof d: ${ typeof(d) }`)
       this.setState({ 
-        selectedDate :  d
+        selectedDate : d
       })
+      this.fetchAPODdata(d);
     }
 
-    fetchAPODdata(){
+    /*
+      this.setState( state =>{ 
+        return { selectedDate : d}
+      })
+      */
+
+    fetchAPODdata( inputDate ){
+      console.log("api request made");
       // convert selectedDate to a format which can be used by the APOD API
-      const useDate = this.state.selectedDate.toJSON().slice(0, 10);
+      inputDate = inputDate.toJSON().slice(0, 10);
 
       // create a token which can be used to end api call
       const CancelToken= axios.CancelToken;
       const source = CancelToken.source(); 
 
-      axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${useDate}`,
+      axios.get(`https://api.nasa.gov/planetary/apod?api_key=gbxiSPUifzAqtMVLZiEswrVn0ikENJtIRYiNpVqy&date=${ inputDate}`,
       { cancelToken : source.token }
       )
       // if the the server responds show the results
@@ -47,16 +57,12 @@ class App extends React.Component {
     }// end fetchAPODdata
 
   componentDidMount() {
-    this.fetchAPODdata();
+    this.fetchAPODdata( this.state.selectedDate );
       } // end componentDidMount
-
-  UNSAFE_componentWillUpdate(){
-    console.log( "state  updated ",this.state.selectedDate)
-  } // end componentWillUpdate
 
   render () {
     return (
-      <Potd pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
+      <Potd err={this.state.err } pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
     )
   } // end  render
 
