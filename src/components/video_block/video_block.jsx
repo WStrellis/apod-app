@@ -26,7 +26,7 @@ export default class VidBlock extends Component {
 
   render() {
     return (
-         <StyledIF src={ this.props.url } frameborder="0" title= { this.props.title }></StyledIF>
+         <StyledIF src={ this.props.url } frameborder="0" title= { this.props.title } allowFullScreen></StyledIF>
     )
   }
 }// end VidBlock

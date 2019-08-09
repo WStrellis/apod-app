@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Styled from "styled-components";
 
 const ExpDiv = Styled.div`
   padding: 15px;
+  flex-grow: 0;
+  background-color: ${ props => props.theme.colors.primaryBlueTransparent };
+  border-top: 1px solid ${ props => props.theme.colors.primaryBlue };
 `;
 
 export default function Explanation(props){
