@@ -9,17 +9,22 @@ import Explanation from "../explanation/explanation.jsx";
 export default class Potd extends Component {
 
   renderLoading() {
-    return <div>...loading</div>
+    return (
+      <>
+        <AppHeader date={this.props.date} cb={this.props.cb}/>
+        <div>...loading</div>
+      </>
+    )
   };
 
   renderSuccess() {
-    const {title, copyright=null, url, date, explanation, media_type, hdurl } = this.props.pod;
+    const {title, copyright=null, url, explanation, media_type, hdurl } = this.props.pod;
 
     return (
       <>
         <AppHeader date={this.props.date} cb={this.props.cb}/>
         <MediaTitle mtitle={title}/>
-        <MediaWrapper url={url} copyright={copyright}/>
+        <MediaWrapper url={url} hdurl={hdurl} copyright={copyright} media_type={media_type} />
         <Explanation explanation={explanation}/>
       </>
     )
@@ -28,6 +33,7 @@ export default class Potd extends Component {
   renderErr(){
     return (
       <>
+        <AppHeader date={this.props.date} cb={this.props.cb}/>
         <h1>An error occured: {this.props.err.response.data.error.code}</h1>
         <p>{this.props.err.response.data.error.message}</p>
       </>

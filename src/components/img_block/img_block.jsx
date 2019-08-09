@@ -8,9 +8,8 @@ import PropTypes from "prop-types";
 
 const StyledImg = styled.img`
   height: auto;
-  max-height: 100%;
   width: 100%;
-  max-width: 100%;
+  object-fit: cover;
 `;
 
  /** @components */

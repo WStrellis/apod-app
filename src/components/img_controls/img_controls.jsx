@@ -4,7 +4,8 @@ import styled from "styled-components";
 const ImgControlsDiv = styled.div`
   height: 200px;
   width: 400px;
-  border: 1px solid red;
+  background-color: ${ props => props.theme.colors.primaryblue.transparent};
+  border: 1px solid ${ props => props.theme.colors.primaryblue};
 `;
 
 export default class ImgControls extends Component {

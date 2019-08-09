@@ -2,23 +2,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import "../../styles/index.scss";
-// import { mediaBP } from "../../styles/styles";
 import styled from "styled-components";
 
 import ImgBlock from "../img_block/img_block.jsx";
+import VidBlock from "../video_block/video_block.jsx";
 import Copyright from "../copyright/copyright.jsx";
 
-
-  // max-width: 250px;
-  // max-height: 300px;
-  // @media screen and ( ${props => props.theme.mediaBP.medium}){
-    // max-height:  700px;
-  // @media screen and ( ${props => props.theme.mediaBP.large}){
-    // max-height:  1000px;
-    // max-width: 1150px;
+// Position: relative  because copyright is absolutely positioned below
 const ImgWrapDiv = styled.div`
   display: flex;
+  position: relative;
+  max-height: 350px
+  width: max-content;
   max-width: 80%;
   border: 1px solid ${props => props.theme.colors.primaryPurple};
   background-color: ${props => props.theme.colors.primaryPurpleTransparent};
@@ -26,14 +21,18 @@ const ImgWrapDiv = styled.div`
   padding: 10px;
 
   @media screen and ( ${props => props.theme.mediaBP.medium}){
-    max-width: 90%;
-  }
-`;
+    max-height: 600px;
+  max-width: 90%;
+  };
 
+  @media screen and ( ${props => props.theme.mediaBP.large}){
+    max-height: 700px;
+  };
+`
+  
 
 const MediaContainer = styled.div`
-  max-width: max-content;
-  margin: 0 auto;
+  margin: 20px auto;
 `;
 
 /**
@@ -45,12 +44,16 @@ export default class MediaWrapper extends Component {
 
 
   render() {
+     let media = ( this.props.media_type === "video")?
+        <VidBlock url={this.props.url} title={this.props.title}/> :
+        <ImgBlock url={this.props.url} title={this.props.title}></ImgBlock>;
+    
     return (
       <MediaContainer>
         <ImgWrapDiv>
-            <ImgBlock url={this.props.url} title={this.props.title}></ImgBlock>
+          { media }
+          { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
         </ImgWrapDiv>
-        <Copyright copyright={this.props.copyright}/>
       </MediaContainer>
     )
   }
