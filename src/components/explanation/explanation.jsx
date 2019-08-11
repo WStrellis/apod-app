@@ -8,6 +8,7 @@ const ExpDiv = Styled.div`
   border-top: 1px solid ${ props => props.theme.colors.primaryBlue };
 `;
 
+  // ${ props => props.theme.type.muli };
 export default function Explanation(props){
   return(
     <ExpDiv>

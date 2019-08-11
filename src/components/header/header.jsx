@@ -8,7 +8,6 @@ import DateSelector from "../date_picker/date_picker.jsx";
 // graphics
 import Logo from "../icons/logo.jsx";
 
-  // background-color: ${ props => props.theme.colors.primaryBlueTransparent};
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,7 +31,7 @@ export default class AppHeader extends Component {
       <HeaderContainer>
         <Logo/>
         <AppTitle/>
-        <DateSelector date={this.props.date} cb={this.props.cb}/>
+        <DateSelector date={this.props.date} cb={this.props.cb} />
       </HeaderContainer>
     )
   }

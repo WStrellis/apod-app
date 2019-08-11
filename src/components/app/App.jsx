@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 import Potd from "../potd/potd.jsx";
 
 
@@ -48,12 +47,13 @@ class App extends React.Component {
     }// end fetchAPODdata
 
   componentDidMount() {
+    console.log(this.state.availableDates);
     this.fetchAPODdata( this.state.selectedDate );
       } // end componentDidMount
 
   render () {
     return (
-      <Potd err={this.state.err } pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
+      <Potd err={this.state.err }  pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
     )
   } // end  render
 

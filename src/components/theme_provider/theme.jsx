@@ -13,7 +13,10 @@ const theme = {
     primaryBlue: "rgba( 3, 227, 235, 1);",
     primaryBlueTransparent: "rgba( 3, 227, 235, 0.16);",
     primaryPurple: "rgba( 83, 7, 134, 1);",
-    primaryPurpleTransparent: "rgba( 83, 7, 134, 0.16);",
+    primaryPurpleTransparent: "rgba( 83, 7, 134, 0.16);"
+   },
+   fonts : {
+     muli : "font-family: 'Muli', sans-serif;"
    }
 }
 

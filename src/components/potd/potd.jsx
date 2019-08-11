@@ -7,9 +7,12 @@ import MediaWrapper from "../media_wrapper/media_wrapper.jsx";
 import MediaTitle from "../media_title/media_title.jsx"; 
 import Explanation from "../explanation/explanation.jsx"; 
 
-
 export default class Potd extends Component {
 
+  /* 
+  err.response.status: 500
+  Internal server error 
+  */
   renderLoading() {
     return (
       <AppWrapper>
@@ -24,7 +27,7 @@ export default class Potd extends Component {
 
     return (
       <AppWrapper>
-        <AppHeader date={this.props.date} cb={this.props.cb}/>
+        <AppHeader date={this.props.date} cb={this.props.cb} availableDates={ this.props.availableDates}/>
         <MediaTitle mtitle={title}/>
           <MediaWrapper url={url} hdurl={hdurl} copyright={copyright} media_type={media_type} />
           <Explanation explanation={explanation}/>
@@ -34,14 +37,12 @@ export default class Potd extends Component {
 
   renderErr(){
     return (
-      <>
-        <AppHeader date={this.props.date} cb={this.props.cb}/>
-        <h1>An error occured: {this.props.err.response.data.error.code}</h1>
-        <p>{this.props.err.response.data.error.message}</p>
-      </>
+      <AppWrapper>
+        <p>An error occured</p>
+      </AppWrapper>
     )
     }
-  
+
   render (){
     if( this.props.loading){
       return this.renderLoading();
