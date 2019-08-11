@@ -15,7 +15,7 @@ const theme = {
     primaryPurple: "rgba( 83, 7, 134, 1);",
     primaryPurpleTransparent: "rgba( 83, 7, 134, 0.16);"
    },
-   fonts : {
+   type : {
      muli : "font-family: 'Muli', sans-serif;"
    }
 }
