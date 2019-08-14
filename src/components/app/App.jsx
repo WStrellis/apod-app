@@ -47,7 +47,6 @@ class App extends React.Component {
     }// end fetchAPODdata
 
   componentDidMount() {
-    console.log(this.state.availableDates);
     this.fetchAPODdata( this.state.selectedDate );
       } // end componentDidMount
 
