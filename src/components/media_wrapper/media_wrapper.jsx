@@ -13,21 +13,12 @@ const ImgWrapDiv = styled.div`
   display: flex;
   position: relative;
   height: max-content;
-  max-width: max-content;
   border: 1px solid ${props => props.theme.colors.primaryPurple};
   background-color: ${props => props.theme.colors.primaryPurpleTransparent};
   margin: 0 auto;
   padding: 10px;
   width: max-content;
-  max-width: 80%;
-
-  @media screen and ( ${props => props.theme.mediaBP.medium}){
-    max-width: 90%;
-  };
-
-  @media screen and ( ${props => props.theme.mediaBP.large}){
-    max-width: 90%;
-  };
+  max-width: 90%;
 `
   
 

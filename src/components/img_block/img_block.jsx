@@ -20,7 +20,6 @@ const StyledImg = styled.img`
     max-height: 700px;
 `;
 
-    // max-width: 90%;
  /** @components */
 export default class ImgBlock extends Component {
 
