@@ -26,7 +26,7 @@ export default class Potd extends Component {
   };
 
   renderSuccess() {
-    const {title, copyright=null, url, explanation, media_type, hdurl } = this.props.pod;
+    const {title, copyright=null, url, explanation, media_type, hdurl=null } = this.props.pod;
 
     return (
       <AppWrapper>

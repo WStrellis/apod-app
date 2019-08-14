@@ -5,18 +5,24 @@ const SvgWrap = Styled.div`
   width: 40px;
   height: 40px;
   border: 1px solid ${ props => props.theme.colors.primaryBlue};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover svg{
   filter: drop-shadow(0px 0px 3px ${ props => props.theme.colors.primaryBlueTransparent});
   }
 
   svg {
-  fill: ${ props => props.theme.colors.primaryBlueTransparent };
- stroke: ${ props => props.theme.colors.primaryBlue};
- stroke-width: 0.15px;
+    display : block;
+    height: 80%;
+    width: 80%;
+    stroke: ${ props => props.theme.colors.primaryBlue};
+    stroke-width: 0.15px;
  }
 `;
 
+    // fill: ${ props => props.theme.colors.primaryBlueTransparent };
 export default class RandomBtn extends Component {
   render() {
     return (

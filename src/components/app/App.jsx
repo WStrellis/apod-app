@@ -1,14 +1,25 @@
 import React from "react";
 import axios from "axios";
 import Potd from "../potd/potd.jsx";
-
+import fp_img from "./fairypillar.jpg";
+import fish_img from "./clownfish.png";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      loading : true,
+      // loading : true,
+      // set to false for testing
+      loading : false,
       selectedDate : new Date(),
+      pod  :{
+        title: "Fairy Pillars",
+        url : fish_img,
+        // url : fp_img,
+        copyright : "John Smith",
+        explanation : " a really cool picture",
+        media_type : "picture"
+      }
     };
    
     this.changeDate = this.changeDate.bind(this);
@@ -47,7 +58,7 @@ class App extends React.Component {
     }// end fetchAPODdata
 
   componentDidMount() {
-    this.fetchAPODdata( this.state.selectedDate );
+    // this.fetchAPODdata( this.state.selectedDate );
       } // end componentDidMount
 
   render () {

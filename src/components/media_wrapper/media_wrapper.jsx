@@ -12,21 +12,21 @@ import Copyright from "../copyright/copyright.jsx";
 const ImgWrapDiv = styled.div`
   display: flex;
   position: relative;
-  max-height: 350px
-  width: max-content;
-  max-width: 80%;
+  height: max-content;
+  max-width: max-content;
   border: 1px solid ${props => props.theme.colors.primaryPurple};
   background-color: ${props => props.theme.colors.primaryPurpleTransparent};
   margin: 0 auto;
   padding: 10px;
+  width: max-content;
+  max-width: 80%;
 
   @media screen and ( ${props => props.theme.mediaBP.medium}){
-    max-height: 600px;
-  max-width: 90%;
+    max-width: 90%;
   };
 
   @media screen and ( ${props => props.theme.mediaBP.large}){
-    max-height: 700px;
+    max-width: 90%;
   };
 `
   

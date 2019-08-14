@@ -7,6 +7,7 @@ yarn-error.log*
 
 #ignore images for now
 *.png
+*.PNG
 *.jpeg
 *.jpg
 *.xcf

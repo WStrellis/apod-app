@@ -8,10 +8,19 @@ import PropTypes from "prop-types";
 
 const StyledImg = styled.img`
   height: auto;
-  width: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  object-fit: contain;
+  max-height: 400px;
+
+  @media screen and ( ${props => props.theme.mediaBP.medium}){
+    max-height: 600px;
+  };
+
+  @media screen and ( ${props => props.theme.mediaBP.large}){
+    max-height: 700px;
 `;
 
+    // max-width: 90%;
  /** @components */
 export default class ImgBlock extends Component {
 
