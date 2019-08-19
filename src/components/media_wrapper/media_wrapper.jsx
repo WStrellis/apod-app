@@ -7,6 +7,7 @@ import styled from "styled-components";
 import ImgBlock from "../img_block/img_block.jsx";
 import VidBlock from "../video_block/video_block.jsx";
 import Copyright from "../copyright/copyright.jsx";
+import ImgControls from "../img_controls/img_controls.jsx";
 
 // Position: relative  because copyright is absolutely positioned below
 const ImgWrapDiv = styled.div`
@@ -25,6 +26,9 @@ const ImgWrapDiv = styled.div`
 const MediaContainer = styled.div`
   width: 100%
   margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
 `;
 
@@ -47,6 +51,7 @@ export default class MediaWrapper extends Component {
           { media }
           { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
         </ImgWrapDiv>
+        <ImgControls />
       </MediaContainer>
     )
   }
