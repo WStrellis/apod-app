@@ -12,11 +12,14 @@ export default class Potd extends Component {
   /* 
   err.response.status: 500
   Internal server error 
+
+  err.response.status: 429
+  too many requests
   */
   renderLoading() {
     return (
       <AppWrapper>
-        <AppHeader date={this.props.date} cb={this.props.cb}/>
+        <AppHeader date={this.props.selectedDate} cb={this.props.cb}/>
         <div>...loading</div>
       </AppWrapper>
     )
@@ -27,10 +30,18 @@ export default class Potd extends Component {
 
     return (
       <AppWrapper>
-        <AppHeader date={this.props.date} cb={this.props.cb} availableDates={ this.props.availableDates}/>
+        <AppHeader  selectedDate={ this.props.selectedDate} cb={this.props.cb} />
         <MediaTitle mtitle={title}/>
-        <MediaWrapper url={url} hdurl={hdurl} copyright={copyright} media_type={media_type} />
-        <Explanation explanation={explanation}/>
+        <MediaWrapper 
+          url={ url }  
+          hdurl={ hdurl } 
+          mediaType={ media_type } 
+          copyright={ copyright}
+          title={ title }
+          selectedDate={ this.props.selectedDate}
+          cb={ this.props.cb}
+          />
+        <Explanation explanation={ explanation }/>
       </AppWrapper>
     )
   };

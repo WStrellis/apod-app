@@ -31,7 +31,7 @@ export default class AppHeader extends Component {
       <HeaderContainer>
         <Logo/>
         <AppTitle/>
-        <DateSelector date={this.props.date} cb={this.props.cb} />
+        <DateSelector selectedDate={this.props.selectedDate} cb={this.props.cb} />
       </HeaderContainer>
     )
   }

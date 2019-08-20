@@ -41,7 +41,7 @@ export default class MediaWrapper extends Component {
 
 
   render() {
-     let media = ( this.props.media_type === "video")?
+     let media = ( this.props.mediaType === "video")?
         <VidBlock url={this.props.url} title={this.props.title}/> :
         <ImgBlock url={this.props.url} title={this.props.title}></ImgBlock>;
     
@@ -51,20 +51,22 @@ export default class MediaWrapper extends Component {
           { media }
           { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
         </ImgWrapDiv>
-        <ImgControls />
+        <ImgControls  
+          selectedDate={this.props.selectedDate} 
+          cb={ this.props.cb}/>
       </MediaContainer>
     )
   }
 } // end MediaWrapper
 
-MediaWrapper.propTypes = {
+// MediaWrapper.propTypes = {
   /* URL : the url to the image */
-  url : PropTypes.string,
+  // url : PropTypes.string,
   /* HDURL : the hdurl to the image */
-  hdurl : PropTypes.string,
+  // hdurl : PropTypes.string,
   /* Copyright : the creator of the image */
-  copyright : PropTypes.string,
-};
+  // copyright : PropTypes.string,
+// };
 
 MediaWrapper.defaultProps = {
   url : "https://s3.amazonaws.com/wstrellis-images/test-pixels/light_green_pixel.gif",

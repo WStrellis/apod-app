@@ -4,16 +4,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import DateInput from "./date_input.jsx";
 
 export default class DateSelector extends React.Component {
+  constructor(props){
+    super(props);
+    this.currentDate = new Date();
+    this.earliestDate = new Date( 1995, 5, 16);
+  }
    
   render() {
     return (
       <DatePicker
         customInput={ <DateInput/> }
-        selected={this.props.date}
+        selected={this.props.selectedDate}
         onChange={this.props.cb}
         // only days from June 16 ,1995 to current day are selectable
-        maxDate={ new Date() }
-        minDate={ new Date( 1995, 5, 16 )}
+        maxDate={ this.currentDate }
+        minDate={ this.earliestDate }
         dateFormat="MMMM, d yyyy"
         // display the datepicker as a modal
         withPortal

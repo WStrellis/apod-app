@@ -30,8 +30,8 @@ class App extends React.Component {
       const CancelToken= axios.CancelToken;
       const source = CancelToken.source(); 
 
-      axios.get(`https://api.nasa.gov/planetary/apod?api_key=gbxiSPUifzAqtMVLZiEswrVn0ikENJtIRYiNpVqy&date=${ inputDate}`,
-      // axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${ inputDate}`,
+      // axios.get(`https://api.nasa.gov/planetary/apod?api_key=gbxiSPUifzAqtMVLZiEswrVn0ikENJtIRYiNpVqy&date=${ inputDate}`,
+      axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${ inputDate}`,
       { cancelToken : source.token }
       )
       // if the the server responds show the results
@@ -52,7 +52,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <Potd err={this.state.err }  pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
+      <Potd 
+        selectedDate={this.state.selectedDate}
+        pod={this.state.pod} 
+        loading={this.state.loading} 
+        cb={this.changeDate} 
+        />
     )
   } // end  render
 

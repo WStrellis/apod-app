@@ -35,3 +35,7 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+
+#anything from vscode
+.vscode/
