@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import styled from "styled-components";
 
@@ -41,6 +41,9 @@ export default class MediaWrapper extends Component {
 
 
   render() {
+    // used to set up HD icons
+    let hasHD = ( this.props.url !== this.props.hdurl && this.props.hdurl !== null)? true : false;
+
      let media = ( this.props.mediaType === "video")?
         <VidBlock url={this.props.url} title={this.props.title}/> :
         <ImgBlock url={this.props.url} title={this.props.title}></ImgBlock>;
@@ -53,6 +56,7 @@ export default class MediaWrapper extends Component {
         </ImgWrapDiv>
         <ImgControls  
           selectedDate={this.props.selectedDate} 
+          hdOption={ hasHD }
           cb={ this.props.cb}/>
       </MediaContainer>
     )
@@ -67,9 +71,9 @@ export default class MediaWrapper extends Component {
   /* Copyright : the creator of the image */
   // copyright : PropTypes.string,
 // };
-
+/* 
 MediaWrapper.defaultProps = {
   url : "https://s3.amazonaws.com/wstrellis-images/test-pixels/light_green_pixel.gif",
   hdurl : "https://s3.amazonaws.com/wstrellis-images/test-pixels/light_green_pixel.gif",
   copyright : "Westley Strellis"
-};
+}; */

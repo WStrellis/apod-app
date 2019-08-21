@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
+import BtnContainer from "./imgCtlBtn.jsx";
 import HexIcon from "../icons/hexagon.jsx";
 import ArrowIcon from "../icons/arrow.jsx";
 import RandomIcon from "../icons/random.jsx";
@@ -9,83 +10,81 @@ import HDIcon from "../icons/hd.jsx";
 
 import { nextDay, prevDay } from "../../js/date_funcs.js";
 
-
+import {  isSameDay } from 'date-fns';
 
 const ImgControlsDiv = styled.div`
   position: relative;
   margin: 50px auto 0 auto;
 `;
 
-const ImgControls__topRow = styled.div`
+const TopRow = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
 `;
 
-const ImgControls__bottomRow = styled.div`
+const BottomRow = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
   top : -25px;
 `;
 
-const Btn = styled.div`
-  width: 50px;
-  height: 50px;
-  margin: 25px;
-  position: relative
-  z-index: 10;
-
-
-  :hover .icon {
-     filter: drop-shadow( 0px 0px 5px #49a499  );
-  }
-`;
-
-const arrowLeft = {
-  transform: "rotate(180deg)",
-  left: "-5px",
-}
-const arrowRight = {
-  transform: "none",
-  left: "5px",
-}
-
 export default class ImgControls extends Component {
+  constructor( props ){
+    super( props );
+    this.currentDate = new Date();
+    this.earliestDate = new Date( 1995, 5, 16);
+
+    this.prevDay = prevDay;
+    this.nextDay = nextDay;
+  }
 
   render() {
+    let selected = this.props.selectedDate;
+
+    //  selected === earliestDate set to "disabled", else activate
+    let prevStatus = ( isSameDay( selected, this.earliestDate))? "disable": "activate";
+
+    //  selected === currentDate set to "disabled", else activate
+    let nextStatus = ( isSameDay( selected, this.currentDate))? "disable": "activate";
+
+    let hdStatus = ( this.props.hdOption === true)? "activate": "disable";
+
     return (
       <ImgControlsDiv>
 
-        <ImgControls__topRow>
+        <TopRow>
 
-          <Btn onClick={ () => prevDay( this.props.selectedDate, this.props.cb)}>
-            <HexIcon/>
-            <ArrowIcon  svgStyle={ arrowLeft} />
-          </Btn>
-          <Btn>
-            <HexIcon/>
+          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.prevDay( selected, this.props.cb)}>
+            <HexIcon status={ prevStatus}/>
+            <ArrowIcon   direction={"left"} status={prevStatus}/>
+          </BtnContainer>
+
+          <BtnContainer>
+            <HexIcon status={ "activate"}/>
             <RandomIcon/>
-           </Btn>
-          <Btn>
-            <HexIcon/>
-            <ArrowIcon   svgStyle={ arrowRight}/>
-          </Btn>
+           </BtnContainer>
 
-        </ImgControls__topRow>
+          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.nextDay( selected, this.props.cb)}>
+            <HexIcon status={ nextStatus}/>
+            <ArrowIcon  direction={"right"} status={ nextStatus }/>
+          </BtnContainer>
 
-        <ImgControls__bottomRow>
+        </TopRow>
 
-          <Btn>
-            <HexIcon/>
+        <BottomRow>
+
+            <BtnContainer>
+            <HexIcon status={ "activate"}/>
             <ExpandIcon/>
-          </Btn>
-          <Btn>
-            <HexIcon/>
-            <HDIcon/>
-          </Btn>
+          </BtnContainer>
+          <BtnContainer>
+            <HexIcon status={ hdStatus}/>
+            <HDIcon status={ hdStatus }/>
+          </BtnContainer>
 
-        </ImgControls__bottomRow>
+        </BottomRow>
 
       </ImgControlsDiv>
     )

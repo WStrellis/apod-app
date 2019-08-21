@@ -24,6 +24,7 @@ class App extends React.Component {
 
     fetchAPODdata( inputDate ){
       // convert selectedDate to a format which can be used by the APOD API
+      console.log("making api request");
       inputDate = inputDate.toJSON().slice(0, 10);
 
       // create a token which can be used to end api call

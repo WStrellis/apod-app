@@ -40,6 +40,7 @@ class App extends React.Component {
     }
 
     fetchAPODdata( inputDate ){
+      console.log("making api request");
       // convert selectedDate to a format which can be used by the APOD API
       inputDate = inputDate.toJSON().slice(0, 10);
 
@@ -69,7 +70,12 @@ class App extends React.Component {
 
   render () {
     return (
-      <Potd err={this.state.err }  pod={this.state.pod} loading={this.state.loading} cb={this.changeDate} date={this.state.selectedDate}/>
+      <Potd 
+        selectedDate={this.state.selectedDate}
+        pod={this.state.pod} 
+        loading={this.state.loading} 
+        cb={this.changeDate} 
+      />
     )
   } // end  render
 
