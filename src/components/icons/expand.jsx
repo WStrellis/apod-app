@@ -4,10 +4,9 @@ import styled from "styled-components";
 const ExpandSVG = styled.svg`
   display : block;
   position: relative;
-  height: 100%;
-  width: 100%;
+  margin: 3px;
   stroke: ${ props => props.theme.colors.primaryBlue};
-  stroke-width: 0.8;
+  stroke-width: 0.6;
 `;
 
 export default class ExpandIcon extends Component {

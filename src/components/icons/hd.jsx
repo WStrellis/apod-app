@@ -7,7 +7,7 @@ const HDSVG = styled.svg`
   position: relative;
   height: 100%;
   width: 100%;
-  stroke-width: 0.2;
+  stroke-width: 0.4px;
 `;
 
 export default class HDIcon extends Component {

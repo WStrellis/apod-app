@@ -8,7 +8,7 @@ import RandomIcon from "../icons/random.jsx";
 import ExpandIcon from "../icons/expand.jsx";
 import HDIcon from "../icons/hd.jsx";
 
-import { nextDay, prevDay } from "../../js/date_funcs.js";
+import { nextDay, prevDay, randomDayBetween } from "../../js/date_funcs.js";
 
 import {  isSameDay } from 'date-fns';
 
@@ -56,17 +56,21 @@ export default class ImgControls extends Component {
 
         <TopRow>
 
-          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.prevDay( selected, this.props.cb)}>
+          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.cb( prevDay(selected)) }>
             <HexIcon status={ prevStatus}/>
             <ArrowIcon   direction={"left"} status={prevStatus}/>
           </BtnContainer>
 
-          <BtnContainer>
+          <BtnContainer status={"activate"}
+            clickHandler={ () => {
+              this.props.cb( randomDayBetween( this.currentDate, this.earliestDate) )
+            }}
+          >
             <HexIcon status={ "activate"}/>
             <RandomIcon/>
            </BtnContainer>
 
-          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.nextDay( selected, this.props.cb)}>
+          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.props.cb( nextDay( selected) ) }>
             <HexIcon status={ nextStatus}/>
             <ArrowIcon  direction={"right"} status={ nextStatus }/>
           </BtnContainer>
