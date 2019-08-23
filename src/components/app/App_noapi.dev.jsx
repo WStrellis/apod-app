@@ -21,7 +21,7 @@ class App extends React.Component {
       pod  :{
         title: "Fairy Pillars",
         url : fish_img,
-        // url : fp_img,
+        hdurl : fp_img,
         copyright : "John Smith",
         explanation : " a really cool picture",
         media_type : "picture"
@@ -71,6 +71,7 @@ class App extends React.Component {
   render () {
     return (
       <Potd 
+        appState={ this.state}
         selectedDate={this.state.selectedDate}
         pod={this.state.pod} 
         loading={this.state.loading} 

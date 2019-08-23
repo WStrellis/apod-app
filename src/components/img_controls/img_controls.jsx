@@ -51,26 +51,28 @@ export default class ImgControls extends Component {
 
     let hdStatus = ( this.props.hdOption === true)? "activate": "disable";
 
+    let hdToggle = (this.props.hdInUse)? this.props.noHDcb : this.props.preferHDcb;
+
     return (
       <ImgControlsDiv>
 
         <TopRow>
 
-          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.cb( prevDay(selected)) }>
+          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.dateCB( prevDay(selected)) }>
             <HexIcon status={ prevStatus}/>
             <ArrowIcon   direction={"left"} status={prevStatus}/>
           </BtnContainer>
 
           <BtnContainer status={"activate"}
             clickHandler={ () => {
-              this.props.cb( randomDayBetween( this.currentDate, this.earliestDate) )
+              this.props.dateCB( randomDayBetween( this.currentDate, this.earliestDate) )
             }}
           >
             <HexIcon status={ "activate"}/>
             <RandomIcon/>
            </BtnContainer>
 
-          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.props.cb( nextDay( selected) ) }>
+          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.props.dateCB( nextDay( selected) ) }>
             <HexIcon status={ nextStatus}/>
             <ArrowIcon  direction={"right"} status={ nextStatus }/>
           </BtnContainer>
@@ -83,7 +85,8 @@ export default class ImgControls extends Component {
             <HexIcon status={ "activate"}/>
             <ExpandIcon/>
           </BtnContainer>
-          <BtnContainer>
+
+          <BtnContainer status={ hdStatus} clickHandler={ ()=> hdToggle() }>
             <HexIcon status={ hdStatus}/>
             <HDIcon status={ hdStatus }/>
           </BtnContainer>

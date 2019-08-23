@@ -25,7 +25,7 @@ export default class ImgBlock extends Component {
 
   render() {
     return (
-       <StyledImg src={this.props.url} title={this.props.title} alt={this.props.title}></StyledImg>
+       <StyledImg src={this.props.imgSrc} title={this.props.title} alt={this.props.title}></StyledImg>
     )
   }
 }// end ImgBlock

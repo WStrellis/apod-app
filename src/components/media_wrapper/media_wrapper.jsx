@@ -20,7 +20,12 @@ const ImgWrapDiv = styled.div`
   padding: 10px;
   width: max-content;
   max-width: 90%;
-`
+
+  @media screen and (${props => props.theme.mediaBP.medium}) {
+    max-width: 70%;
+  }
+`;
+
   
 
 const MediaContainer = styled.div`
@@ -30,6 +35,11 @@ const MediaContainer = styled.div`
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
+
+  @media screen and (${props => props.theme.mediaBP.medium}) {
+    flex-direction: row;    
+    justify-content: space-evenly;
+  }
 `;
 
 /**
@@ -38,15 +48,28 @@ const MediaContainer = styled.div`
 
 /**  @component */
 export default class MediaWrapper extends Component {
+  constructor( props){
+    super( props);
+    this.state = {
+      useHD : false,
+    }
 
+    this.preferHD = this.preferHD.bind(this);
+    this.noHD = this.noHD.bind(this);
+  }
+
+  preferHD(){ this.setState({ useHD : true})  }
+  noHD(){ this.setState({ useHD : false})  }
 
   render() {
     // used to set up HD icons
     let hasHD = ( this.props.url !== this.props.hdurl && this.props.hdurl !== null)? true : false;
-
+    /* 
+   if the user selects hd it changes the imgSrc to this.props.hdurl
+    */
      let media = ( this.props.mediaType === "video")?
         <VidBlock url={this.props.url} title={this.props.title}/> :
-        <ImgBlock url={this.props.url} title={this.props.title}></ImgBlock>;
+        <ImgBlock imgSrc={this.props.url} title={this.props.title}></ImgBlock>;
     
     return (
       <MediaContainer>
@@ -57,7 +80,11 @@ export default class MediaWrapper extends Component {
         <ImgControls  
           selectedDate={this.props.selectedDate} 
           hdOption={ hasHD }
-          cb={ this.props.cb}/>
+          hdInUse={ this.state.useHD}
+          preferHDcb={ this.preferHD}
+          noHDcb={ this.noHD}
+          dateCB={ this.props.cb}
+          />
       </MediaContainer>
     )
   }
