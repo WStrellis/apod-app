@@ -64,20 +64,16 @@ export default class MediaWrapper extends Component {
   render() {
     // used to set up HD icons
     let hasHD = ( this.props.url !== this.props.hdurl && this.props.hdurl !== null)? true : false;
-    /* 
-   if the user selects hd it changes the imgSrc to this.props.hdurl
-    */
-     let media = ( this.props.mediaType === "video")?
-        <VidBlock url={this.props.url} title={this.props.title}/> :
-        <ImgBlock imgSrc={this.props.url} title={this.props.title}></ImgBlock>;
     
     return (
       <MediaContainer>
         <ImgWrapDiv>
-          { media }
+          { this.props.mediaType === 'video' && <VidBlock url={this.props.url} title={this.props.title}/> }
+          { this.props.mediaType === 'image' &&  <ImgBlock imgSrc={ this.state.useHD ? this.props.hdurl : this.props.url} title={this.props.title}></ImgBlock>}
           { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
         </ImgWrapDiv>
         <ImgControls  
+          useHD={ this.state.useHD }
           selectedDate={this.props.selectedDate} 
           hdOption={ hasHD }
           hdInUse={ this.state.useHD}
@@ -89,18 +85,3 @@ export default class MediaWrapper extends Component {
     )
   }
 } // end MediaWrapper
-
-// MediaWrapper.propTypes = {
-  /* URL : the url to the image */
-  // url : PropTypes.string,
-  /* HDURL : the hdurl to the image */
-  // hdurl : PropTypes.string,
-  /* Copyright : the creator of the image */
-  // copyright : PropTypes.string,
-// };
-/* 
-MediaWrapper.defaultProps = {
-  url : "https://s3.amazonaws.com/wstrellis-images/test-pixels/light_green_pixel.gif",
-  hdurl : "https://s3.amazonaws.com/wstrellis-images/test-pixels/light_green_pixel.gif",
-  copyright : "Westley Strellis"
-}; */

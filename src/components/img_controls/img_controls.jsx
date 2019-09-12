@@ -88,7 +88,7 @@ export default class ImgControls extends Component {
 
           <BtnContainer status={ hdStatus} clickHandler={ ()=> hdToggle() }>
             <HexIcon status={ hdStatus}/>
-            <HDIcon status={ hdStatus }/>
+            <HDIcon status={ hdStatus } useHD={ this.props.useHD} />
           </BtnContainer>
 
         </BottomRow>
