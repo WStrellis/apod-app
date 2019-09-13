@@ -13,15 +13,14 @@ const ImgWrapDiv = styled.div`
   justify-content: center;
   position: relative;
   height: max-content;
-  border: 1px solid ${props => props.theme.colors.primaryPurple};
-  background-color: ${props => props.theme.colors.primaryPurpleTransparent};
+  border: 1px solid ${props => props.theme.colors.primaryBlue};
+  background-color: ${props => props.theme.colors.primaryBlueTransparent};
   margin: 0 auto;
   padding: 10px;
   width: max-content;
   max-width: 90%;
 
   @media screen and (${props => props.theme.mediaBP.medium}) {
-    max-width: 70%;
   }
 `;
 
@@ -31,6 +30,12 @@ const MediaContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  margin: 0 1rem;
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    max-width: 60%;
+    align-self: flex-start;
+  }
 `;
 
 /**

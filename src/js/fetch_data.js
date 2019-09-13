@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export default function fetchAPODdata(  loadingCB, errCB, dataCB, inputDate ){
       // convert selectedDate to a format which can be used by the APOD API
-      console.log("making api request");
       inputDate = inputDate.toJSON().slice(0, 10);
 
       // create a token which can be used to end api call
@@ -22,7 +21,7 @@ export default function fetchAPODdata(  loadingCB, errCB, dataCB, inputDate ){
       })
       // if there is an error show the error message
       .catch( err =>{
-        errCB( false,)
-        this.setState({loading : false, err})
+        errCB( true, err)
+        loadingCB( false )
       })
     }// end fetchAPODdata

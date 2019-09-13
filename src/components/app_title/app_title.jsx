@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledH1 = styled.h1`
   display: none;
   text-align: center;
+  font-size: 5rem;
 
   @media screen and ( ${props => props.theme.mediaBP.medium}){
     display: block;

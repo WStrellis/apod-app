@@ -6,6 +6,7 @@ import HexIcon from "../icons/hexagon.jsx";
 import ArrowIcon from "../icons/arrow.jsx";
 import RandomIcon from "../icons/random.jsx";
 import ExpandIcon from "../icons/expand.jsx";
+import CompressIcon from "../icons/compress.jsx";
 import HDIcon from "../icons/hd.jsx";
 
 import { nextDay, prevDay, randomDayBetween } from "../../js/date_funcs.js";
@@ -14,7 +15,7 @@ import {  isSameDay } from 'date-fns';
 
 const ImgControlsDiv = styled.div`
   position: relative;
-  margin: 50px auto 0 auto;
+  margin: 2rem auto;
 `;
 
 const TopRow = styled.div`
@@ -41,7 +42,7 @@ export default class ImgControls extends Component {
   }
 
   render() {
-    let selected = this.props.selectedDate;
+    let selected = this.props.appState.selectedDate;
 
     //  selected === earliestDate set to "disabled", else activate
     let prevStatus = ( isSameDay( selected, this.earliestDate))? "disable": "activate";
@@ -51,7 +52,7 @@ export default class ImgControls extends Component {
 
     let hdStatus = ( this.props.hdOption === true)? "activate": "disable";
 
-    let hdToggle = (this.props.hdInUse)? this.props.noHDcb : this.props.preferHDcb;
+    let hdToggle = (this.props.appState.useHD)? this.props.noHDcb : this.props.preferHDcb;
 
     return (
       <ImgControlsDiv>
@@ -81,14 +82,15 @@ export default class ImgControls extends Component {
 
         <BottomRow>
 
-            <BtnContainer>
+            <BtnContainer  status={"activate"} clickHandler={ ()=> this.props.setModalState() }>
             <HexIcon status={ "activate"}/>
-            <ExpandIcon/>
+            { this.props.appState.isModalOpen && <CompressIcon/>}
+            { !this.props.appState.isModalOpen && <ExpandIcon/>}
           </BtnContainer>
 
           <BtnContainer status={ hdStatus} clickHandler={ ()=> hdToggle() }>
             <HexIcon status={ hdStatus}/>
-            <HDIcon status={ hdStatus } useHD={ this.props.useHD} />
+            <HDIcon status={ hdStatus } useHD={ this.props.appState.useHD} />
           </BtnContainer>
 
         </BottomRow>
