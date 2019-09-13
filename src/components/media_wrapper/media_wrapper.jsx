@@ -12,6 +12,7 @@ import ImgControls from "../img_controls/img_controls.jsx";
 // Position: relative  because copyright is absolutely positioned below
 const ImgWrapDiv = styled.div`
   display: flex;
+  justify-content: center;
   position: relative;
   height: max-content;
   border: 1px solid ${props => props.theme.colors.primaryPurple};

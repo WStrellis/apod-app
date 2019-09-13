@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
  */
 
 const StyledIF = styled.iframe`
-  width: 350px;
-  height: 350px;
+  width: 280px;
+  height: 280px;
 
   @media screen and ( ${ props => props.theme.mediaBP.medium } ){
     width: 750px;
