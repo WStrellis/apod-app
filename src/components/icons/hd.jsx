@@ -12,19 +12,25 @@ const HDSVG = styled.svg`
 
 export default class HDIcon extends Component {
   render() {
-    let inlineStyles = {};
-    let classes = ""
 
-    // set color and hover effect
+    let inlineStyles = {};
+    let classes = "";
+
+    // set css
     if(this.props.status === "activate"){
       inlineStyles.stroke = colors.primaryBlue;
       inlineStyles.fill = colors.primaryBlueTransparent;
-      classes = " icon activate"
+      classes = " icon activate";
+      // if user has HD selected keep icon highlighted
+      if( this.props.useHD ) {
+          inlineStyles.filter = 'drop-shadow( 0px 0px 5px #49a499 )';
+      }
     }else if( this.props.status === "disable"){
       inlineStyles.stroke = colors.disabledLight;
       inlineStyles.fill = colors.disabledDarkTransparent;
       classes = " icon";
-    }
+    } 
+
     return (
       <HDSVG   xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 13.146 7.144" 
         className={ classes }

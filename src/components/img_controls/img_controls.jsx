@@ -6,6 +6,7 @@ import HexIcon from "../icons/hexagon.jsx";
 import ArrowIcon from "../icons/arrow.jsx";
 import RandomIcon from "../icons/random.jsx";
 import ExpandIcon from "../icons/expand.jsx";
+import CompressIcon from "../icons/compress.jsx";
 import HDIcon from "../icons/hd.jsx";
 
 import { nextDay, prevDay, randomDayBetween } from "../../js/date_funcs.js";
@@ -14,7 +15,7 @@ import {  isSameDay } from 'date-fns';
 
 const ImgControlsDiv = styled.div`
   position: relative;
-  margin: 50px auto 0 auto;
+  margin: 2rem auto;
 `;
 
 const TopRow = styled.div`
@@ -41,7 +42,7 @@ export default class ImgControls extends Component {
   }
 
   render() {
-    let selected = this.props.selectedDate;
+    let selected = this.props.appState.selectedDate;
 
     //  selected === earliestDate set to "disabled", else activate
     let prevStatus = ( isSameDay( selected, this.earliestDate))? "disable": "activate";
@@ -51,26 +52,28 @@ export default class ImgControls extends Component {
 
     let hdStatus = ( this.props.hdOption === true)? "activate": "disable";
 
+    let hdToggle = (this.props.appState.useHD)? this.props.noHDcb : this.props.preferHDcb;
+
     return (
       <ImgControlsDiv>
 
         <TopRow>
 
-          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.cb( prevDay(selected)) }>
+          <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.dateCB( prevDay(selected)) }>
             <HexIcon status={ prevStatus}/>
             <ArrowIcon   direction={"left"} status={prevStatus}/>
           </BtnContainer>
 
           <BtnContainer status={"activate"}
             clickHandler={ () => {
-              this.props.cb( randomDayBetween( this.currentDate, this.earliestDate) )
+              this.props.dateCB( randomDayBetween( this.currentDate, this.earliestDate) )
             }}
           >
             <HexIcon status={ "activate"}/>
             <RandomIcon/>
            </BtnContainer>
 
-          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.props.cb( nextDay( selected) ) }>
+          <BtnContainer status={ nextStatus} clickHandler={ ()=>this.props.dateCB( nextDay( selected) ) }>
             <HexIcon status={ nextStatus}/>
             <ArrowIcon  direction={"right"} status={ nextStatus }/>
           </BtnContainer>
@@ -79,13 +82,15 @@ export default class ImgControls extends Component {
 
         <BottomRow>
 
-            <BtnContainer>
+            <BtnContainer  status={"activate"} clickHandler={ ()=> this.props.setModalState() }>
             <HexIcon status={ "activate"}/>
-            <ExpandIcon/>
+            { this.props.appState.isModalOpen && <CompressIcon/>}
+            { !this.props.appState.isModalOpen && <ExpandIcon/>}
           </BtnContainer>
-          <BtnContainer>
+
+          <BtnContainer status={ hdStatus} clickHandler={ ()=> hdToggle() }>
             <HexIcon status={ hdStatus}/>
-            <HDIcon status={ hdStatus }/>
+            <HDIcon status={ hdStatus } useHD={ this.props.appState.useHD} />
           </BtnContainer>
 
         </BottomRow>

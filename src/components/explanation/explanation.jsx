@@ -1,13 +1,17 @@
 import React from 'react'
 import Styled from "styled-components";
 
-const ExpDiv = Styled.div`
-  padding: 15px;
-  flex-grow: 0;
+const ExpDiv= Styled.div`
+  padding: 15px 1rem;
   background-color: ${ props => props.theme.colors.primaryBlueTransparent };
-  border-top: 1px solid ${ props => props.theme.colors.primaryBlue };
+  border: 1px solid ${ props => props.theme.colors.primaryBlue };
   ${ props => props.theme.type.muli };
-  clip-path: polygon(20% 0%, 80% 0%, 100% 15px, 100% 100%, 0 100%, 0 15px);
+  width: 100%;
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    overflow: hidden scroll;
+    max-height: 75%;
+  }
 `;
 
 export default function Explanation(props){

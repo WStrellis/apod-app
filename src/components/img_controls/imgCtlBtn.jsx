@@ -5,7 +5,7 @@ const StyledBtn = styled.div`
   width: 50px;
   height: 50px;
   margin: 25px;
-  position: relative
+  position: relative;
   z-index: 10;
 
   :hover .activate {
@@ -15,7 +15,7 @@ const StyledBtn = styled.div`
 
 export default class BtnContainer extends Component {
   render() {
-    // if the button is not 'active' do not put give it an event handler
+    // if the button is not 'active' do not add an event handler
      const Btn = ( this.props.status === "activate")?
       <StyledBtn onClick={ this.props.clickHandler}>{ this.props.children}</StyledBtn>: 
      <StyledBtn >{this.props.children}</StyledBtn>;
