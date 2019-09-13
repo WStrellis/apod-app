@@ -1,17 +1,17 @@
 import React from 'react'
 import Styled from "styled-components";
 
-  
 const ExpDiv= Styled.div`
   padding: 15px 1rem;
   background-color: ${ props => props.theme.colors.primaryBlueTransparent };
-  border-top: 1px solid ${ props => props.theme.colors.primaryBlue };
-   flex-grow: 0;
+  border: 1px solid ${ props => props.theme.colors.primaryBlue };
   ${ props => props.theme.type.muli };
+  width: 100%;
 
-  @media screen and (${props => props.theme.mediaBP.medium}) {
-    margin-top: 40px;
-  padding: 15px 3rem;
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    overflow: hidden scroll;
+    max-height: 75%;
+  }
 `;
 
 export default function Explanation(props){
