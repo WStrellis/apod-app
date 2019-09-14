@@ -26,7 +26,7 @@ const ImgWrapDiv = styled.div`
 
 const MediaContainer = styled.div`
   width: 100%;
-  margin: 20px auto;
+  margin: 2rem auto ;
   display: flex;
   justify-content: center;
   flex-grow: 1;
@@ -42,6 +42,7 @@ const MediaContainer = styled.div`
   * Container for the photo or video of the day
  */
 
+          // { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
 /**  @component */
 export default class MediaWrapper extends Component {
 
@@ -52,7 +53,6 @@ export default class MediaWrapper extends Component {
         <ImgWrapDiv>
           { this.props.mediaType === 'video' && <VidBlock url={this.props.url} title={this.props.title}/> }
           { this.props.mediaType === 'image' &&  <ImgBlock imgSrc={ this.props.useHD ? this.props.hdurl : this.props.url} title={this.props.title}></ImgBlock>}
-          { this.props.copyright && <Copyright copyright={this.props.copyright}/>}
         </ImgWrapDiv>
       </MediaContainer>
     )
