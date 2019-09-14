@@ -6,8 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #ignore images for now
-*.png
-*.PNG
+src/components/app/clownfish.png
 *.jpeg
 *.jpg
 *.xcf
