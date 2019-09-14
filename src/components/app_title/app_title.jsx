@@ -7,7 +7,7 @@ const StyledH1 = styled.h1`
   text-align: center;
   font-size: 5rem;
 
-  @media screen and ( ${props => props.theme.mediaBP.medium}){
+  @media screen and ( ${props => props.theme.mediaBP.large}){
     display: block;
   }
 `;
