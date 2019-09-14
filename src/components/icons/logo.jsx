@@ -5,6 +5,7 @@ import appLogo from  "./app_logo.png";
 const LogoImg = styled.img`
   height: 75px;
   width: auto;
+  max-width: 50%;
   object-fit: contain;
   object-position: center;
 `;
