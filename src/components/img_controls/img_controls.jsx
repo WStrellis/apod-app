@@ -85,8 +85,8 @@ export default class ImgControls extends Component {
 
             <BtnContainer  status={ isVideo } clickHandler={ ()=> this.props.setModalState() }>
             <HexIcon status={ isVideo }/>
-            { this.props.appState.isModalOpen && <CompressIcon status={ isVideo }/>}
-            { !this.props.appState.isModalOpen && <ExpandIcon/>}
+            { this.props.appState.isModalOpen && this.props.appState.pod.media_type !== 'video' && <CompressIcon status={ isVideo }/>}
+            { (!this.props.appState.isModalOpen || this.props.appState.pod.media_type === 'video' ) && <ExpandIcon status={ isVideo }/>}
           </BtnContainer>
 
           <BtnContainer status={ hdStatus} clickHandler={ ()=> hdToggle() }>

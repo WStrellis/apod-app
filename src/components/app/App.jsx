@@ -137,7 +137,7 @@ class App extends React.Component {
           url={ this.state.useHD ? this.state.pod.hdurl : this.state.pod.url }
           />}
 
-        { !this.state.isModalOpen && (
+        { (!this.state.isModalOpen || this.state.pod.media_type === 'video') && (
         <POTDContainer>
           <MediaWrapper 
             url={ this.state.pod.url }  

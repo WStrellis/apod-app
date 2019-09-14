@@ -5,13 +5,10 @@ import styled from "styled-components";
 
 import ImgBlock from "../img_block/img_block.jsx";
 import VidBlock from "../video_block/video_block.jsx";
-import Copyright from "../copyright/copyright.jsx";
 
-// Position: relative  because copyright is absolutely positioned below
 const ImgWrapDiv = styled.div`
   display: flex;
   justify-content: center;
-  position: relative;
   height: max-content;
   border: 1px solid ${props => props.theme.colors.primaryBlue};
   background-color: ${props => props.theme.colors.primaryBlueTransparent};
