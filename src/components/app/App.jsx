@@ -118,16 +118,14 @@ class App extends React.Component {
 
   renderSuccess() {
     // used to set up HD icon
-    let hasHD = ( this.state.pod.url !== this.state.pod.hdurl && this.state.pod.hdurl !== null)? true : false
-    // if media_type === video set isModalOpen  to false
-    if( this.state.pod.media_type === 'video') this.setState( state => { return { isModalOpen: false}});
+    let hasHD = ( this.state.pod.url !== this.state.pod.hdurl && this.state.pod.hdurl !== null && this.state.pod.media_type !== 'video')? true : false
 
     return (
       <AppWrapper>
         <AppHeader  selectedDate={ this.state.selectedDate } cb={this.changeDate } />
         <MediaTitle mtitle={ this.state.pod.title }/>
 
-        { this.state.isModalOpen &&  
+        { this.state.isModalOpen &&  this.state.pod.media_type !== 'video' &&
         <FullscreenModal 
           appState={ this.state } 
           hasHD={ hasHD }

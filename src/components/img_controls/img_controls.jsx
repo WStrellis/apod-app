@@ -52,6 +52,8 @@ export default class ImgControls extends Component {
 
     let hdStatus = ( this.props.hdOption === true)? "activate": "disable";
 
+    let isVideo = ( this.props.appState.pod.media_type === 'video')? "disable": "activate";
+
     let hdToggle = (this.props.appState.useHD)? this.props.noHDcb : this.props.preferHDcb;
 
     return (
@@ -82,8 +84,8 @@ export default class ImgControls extends Component {
 
         <BottomRow>
 
-            <BtnContainer  status={"activate"} clickHandler={ ()=> this.props.setModalState() }>
-            <HexIcon status={ "activate"}/>
+            <BtnContainer  status={ isVideo } clickHandler={ ()=> this.props.setModalState() }>
+            <HexIcon status={ isVideo }/>
             { this.props.appState.isModalOpen && <CompressIcon/>}
             { !this.props.appState.isModalOpen && <ExpandIcon/>}
           </BtnContainer>
