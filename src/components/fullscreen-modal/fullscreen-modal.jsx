@@ -15,6 +15,7 @@ const ModalBody = styled.div`
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  padding-right: 3rem;
 `;
 
 export default class FullscreenModal extends Component {

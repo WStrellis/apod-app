@@ -15,7 +15,7 @@ import {  isSameDay } from 'date-fns';
 
 const ImgControlsDiv = styled.div`
   position: relative;
-  margin: 2rem auto;
+  margin-top: 25px;
 `;
 
 const TopRow = styled.div`
@@ -58,7 +58,6 @@ export default class ImgControls extends Component {
 
     return (
       <ImgControlsDiv>
-
         <TopRow>
 
           <BtnContainer status={ prevStatus} clickHandler={ ()=>this.props.dateCB( prevDay(selected)) }>
@@ -86,7 +85,7 @@ export default class ImgControls extends Component {
 
             <BtnContainer  status={ isVideo } clickHandler={ ()=> this.props.setModalState() }>
             <HexIcon status={ isVideo }/>
-            { this.props.appState.isModalOpen && <CompressIcon/>}
+            { this.props.appState.isModalOpen && <CompressIcon status={ isVideo }/>}
             { !this.props.appState.isModalOpen && <ExpandIcon/>}
           </BtnContainer>
 
@@ -96,7 +95,6 @@ export default class ImgControls extends Component {
           </BtnContainer>
 
         </BottomRow>
-
       </ImgControlsDiv>
     )
   }

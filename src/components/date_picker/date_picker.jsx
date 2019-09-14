@@ -19,7 +19,7 @@ export default class DateSelector extends React.Component {
         // only days from June 16 ,1995 to current day are selectable
         maxDate={ this.currentDate }
         minDate={ this.earliestDate }
-        dateFormat="MMMM, d yyyy"
+        dateFormat="MMMM d, yyyy"
         // display the datepicker as a modal
         withPortal
         // without FixedHeight the calender changes size depending on the  # of days in the selected month

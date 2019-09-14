@@ -20,6 +20,7 @@ const POTDContainer = styled.div`
   margin-top: 3rem;
   
   @media screen and (${props => props.theme.mediaBP.large }){
+    flex-grow: 1;
     flex-direction: row; 
     justify-content: space-evenly;
   }
@@ -149,7 +150,7 @@ class App extends React.Component {
             cb={ this.changeDate }
             />
             <CntrlsTxtContainer>
-              <Explanation explanation={ this.state.pod.explanation }/>
+              <Explanation explanation={ this.state.pod.explanation } copyright={ this.state.pod.copyright}/>
 
               <ImgControls  
               appState={ this.state } 

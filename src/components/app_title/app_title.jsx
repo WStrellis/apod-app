@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 
 const StyledH1 = styled.h1`
+  flex-grow: 0;
   display: none;
   text-align: center;
   font-size: 5rem;

@@ -5,7 +5,7 @@ const ExpandSVG = styled.svg`
   display : block;
   position: relative;
   margin: 3px;
-  stroke: ${ props => props.theme.colors.primaryBlue};
+  stroke: ${ props => props.status === 'disable' ? props.theme.colors.disabledLight : props.theme.colors.primaryBlue };
   stroke-width: 0.6;
 `;
 
