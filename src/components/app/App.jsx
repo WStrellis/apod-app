@@ -118,6 +118,7 @@ class App extends React.Component {
   };
 
   renderSuccess() {
+
     // used to set up HD icon
     let hasHD = ( this.state.pod.url !== this.state.pod.hdurl && this.state.pod.hdurl !== null && this.state.pod.media_type !== 'video')? true : false
 
@@ -168,7 +169,6 @@ class App extends React.Component {
   };
 
   renderError(){
-    console.log(this.state.errData);
     return (
       <AppWrapper>
         <p>An error has occured: { this.state.errData.message }</p>
