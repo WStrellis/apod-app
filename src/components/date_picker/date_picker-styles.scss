@@ -5,12 +5,9 @@ div.react-datepicker{
   width: 280px;
   font-family: inherit;
 
-  /* left and right arrows to go to previous months */
-  button.react-datepicker_navigation{
-    top: 15px;
-  }
   button.react-datepicker__navigation--previous {
-    left: 0px;
+    top: 17px;
+    left: 5px;
     border-right-color:  #03e3eb;
     &:hover{
       border-right-color:  #03e3eb;
@@ -19,7 +16,8 @@ div.react-datepicker{
 
   /* right arrow to go to previous month */
   button.react-datepicker__navigation--next {
-    right: 0px;
+    top: 17px;
+    right: 5px;
     border-left-color:  #03e3eb;
     &:hover{
       border-left-color:  #03e3eb;
@@ -43,7 +41,8 @@ div.react-datepicker{
       div.react-datepicker__header__dropdown {
         display: flex;
         justify-content: space-evenly;
-        margin: 1.5rem 0;
+        margin-top: 2rem;
+        margin-bottom:  1.5rem;
         /* used when month  dropdown option is enabled */
         div.react-datepicker__month-dropdown-container {
           select.react-datepicker__month-select {
