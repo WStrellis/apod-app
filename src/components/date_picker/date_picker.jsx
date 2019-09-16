@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import DateInput from "./date_input.jsx";
 import './date_picker-styles.scss';
 
-
 export default class DateSelector extends React.Component {
   constructor(props){
     super(props);

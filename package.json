@@ -45,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/WStrellis/apod-app/issues"
   },
-  "homepage": "https://apod-app-wstrellis.netlify.com",
+  "homepage": "https://apod-wstrellis.netlify.com",
   "devDependencies": {
     "react-styleguidist": "^9.1.13"
   }
