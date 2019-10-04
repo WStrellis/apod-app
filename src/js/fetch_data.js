@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export function fetchData(  url ){
+        axios
+          .get(url)
+          .then( res => res.data)
+
+}// end fetchData
+
 export default function fetchAPODdata(  loadingCB, errCB, dataCB, inputDate ){
     // convert selectedDate to a format which can be used by the APOD API
     inputDate = inputDate.toJSON().slice(0, 10);

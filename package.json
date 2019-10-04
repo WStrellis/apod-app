@@ -6,6 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.0",
+    "date-fns": "^2.3.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-datepicker": "^2.8.0",
@@ -17,9 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "styleguide": "styleguidist server --open",
-    "styleguide:build": "styleguidist build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +46,8 @@
   },
   "homepage": "https://apod-wstrellis.netlify.com",
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.2.0",
     "react-styleguidist": "^9.1.13"
   }
 }
