@@ -19,6 +19,10 @@ const POTDContainer = styled.div`
   padding: 2rem 1rem;
 
   @media screen and (${props => props.theme.mediaBP.large}) {
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
     flex-grow: 1;
     flex-direction: row;
     justify-content: space-evenly;

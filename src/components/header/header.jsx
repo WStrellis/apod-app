@@ -53,6 +53,7 @@ const StyledH1 = styled.h1`
   display: none;
   text-align: center;
   font-size: 5rem;
+  ${props => props.theme.type.muli};
 
   @media screen and (${props => props.theme.mediaBP.large}) {
     display: block;

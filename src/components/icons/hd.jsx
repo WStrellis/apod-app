@@ -22,7 +22,7 @@ export default class HDIcon extends Component {
       classes = ' icon activate'
       // if user has HD selected keep icon highlighted
       if (this.props.useHD) {
-        inlineStyles.filter = 'drop-shadow( 0px 0px 5px rgb(190, 2, 120) )'
+        inlineStyles.filter = 'drop-shadow( 0px 0px 7px rgb(255, 0, 60) )'
       }
     } else if (this.props.status === 'disable') {
       inlineStyles.stroke = colors.disabledLight
