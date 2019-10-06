@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 /**
  * Renders the photo of the day
@@ -8,30 +8,35 @@ import PropTypes from "prop-types";
 
 const StyledImg = styled.img`
   height: auto;
-  max-width: 100%;
-  object-fit: contain;
+  /* max-width: 100%; */
+  width: 100%;
+  object-fit: cover;
   max-height: 400px;
 
-  @media screen and ( ${props => props.theme.mediaBP.medium}){
+  @media screen and (${props => props.theme.mediaBP.medium}) {
     max-height: 600px;
-  };
+  }
 
-  @media screen and ( ${props => props.theme.mediaBP.large}){
+  @media screen and (${props => props.theme.mediaBP.large}) {
     max-height: 700px;
-`;
+  }
+`
 
- /** @components */
+/** @components */
 export default class ImgBlock extends Component {
-
   render() {
     return (
-       <StyledImg src={this.props.imgSrc} title={this.props.title} alt={this.props.title}></StyledImg>
+      <StyledImg
+        src={this.props.imgSrc}
+        title={this.props.title}
+        alt={this.props.title}
+      ></StyledImg>
     )
   }
-}// end ImgBlock
+} // end ImgBlock
 
 ImgBlock.propTypes = {
   /* URL : the url to the image */
-  url : PropTypes.string,
-  title : PropTypes.string
-};
+  url: PropTypes.string,
+  title: PropTypes.string
+}
