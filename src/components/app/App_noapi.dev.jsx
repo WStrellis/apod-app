@@ -1,86 +1,227 @@
-import React from "react";
-import axios from "axios";
-import Potd from "../potd/potd.jsx";
-import fp_img from "./fairypillar.jpg";
-import fish_img from "./clownfish.png";
+import React from 'react'
+import AppWrapper from '../app_wrapper/app_wrapper.jsx'
+import AppHeader from '../header/header.jsx'
+import MediaWrapper from '../media_wrapper/media_wrapper.jsx'
+import Explanation from '../explanation/explanation.jsx'
+import ImgControls from '../img_controls/img_controls.jsx'
+import FullscreenModal from '../fullscreen-modal/fullscreen-modal.jsx'
 
+import styled from 'styled-components'
 
-/* ***************************************
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-THIS FILE IS FOR TESTING PURPOSES ONLY. DO NOT USE IN PRODUCTION
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-****************************************/
+import fetchAPODdata from '../../js/fetch_data'
+
+import fp_img from './fairypillar.jpg'
+import fish_img from './clownfish.png'
+
+const POTDContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 1rem;
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+`
+
+const CntrlsTxtContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  width: 100%;
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    height: 100%;
+    width: 36%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 1rem;
+  }
+`
+
+const MediaTitle = styled.h1`
+  font-size: 4rem;
+  text-align: center;
+  ${props => props.theme.type.muli};
+`
+
 class App extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { 
-      // loading : true,
-      // set to false for testing
-      loading : false,
-      selectedDate : new Date(),
-      pod  :{
-        title: "Fairy Pillars",
-        url : fish_img,
-        hdurl : fp_img,
-        copyright : "John Smith",
-        explanation : " a really cool picture",
-        media_type : "picture"
-      }
-    };
-   
-    this.changeDate = this.changeDate.bind(this);
-    this.fetchAPODdata = this.fetchAPODdata.bind(this);
+    super(props)
+    this.state = {
+      loading: false,
+      error: false,
+      errData: null,
+      pod: {
+        title: 'Fairy Pillars',
+        url: fish_img,
+        hdurl: fp_img,
+        copyright: 'John Smith',
+        explanation:
+          ' a really cool picture Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium provident dicta repudiandae ipsum sit exercitationem ab, tempora id dolorum facere totam. Quibusdam excepturi quis animi alias nemo dignissimos minima atque! Numquam inventore vero dolorum amet architecto labore repellendus quis, exercitationem illum voluptatum similique iure ab. Fugit cumque amet necessitatibus sunt, culpa doloremque minus assumenda cupiditate impedit sed officia neque ea quo adipisci blanditiis sit accusamus! Incidunt quos laboriosam sit deleniti tempora culpa voluptatum quidem nesciunt totam hic, expedita voluptatem eligendi nihil voluptatibus molestias? Totam ea doloribus maiores laboriosam, dolorem quasi non. Temporibus voluptas aperiam exercitationem, rerum a magni aspernatur dicta!a really cool picture Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium provident dicta repudiandae ipsum sit exercitationem ab, tempora id dolorum facere totam. Quibusdam excepturi quis animi alias nemo dignissimos minima atque! Numquam inventore vero dolorum amet architecto labore repellendus quis, exercitationem illum voluptatum similique iure ab. Fugit cumque amet necessitatibus sunt, culpa doloremque minus assumenda cupiditate impedit sed officia neque ea quo adipisci blanditiis sit accusamus! Incidunt quos laboriosam sit deleniti tempora culpa voluptatum quidem nesciunt totam hic, expedita voluptatem eligendi nihil voluptatibus molestias? Totam ea doloribus maiores laboriosam, dolorem quasi non. Temporibus voluptas aperiam exercitationem, rerum a magni aspernatur dicta!',
+        media_type: 'image'
+      },
+      selectedDate: new Date(),
+      isModalOpen: false,
+      useHD: false
     }
 
-    changeDate(d){
-      this.setState({ 
-        selectedDate : d
-      })
-      this.fetchAPODdata(d);
-    }
+    this.fetchAPODdata = fetchAPODdata.bind(this)
+  }
+  preferHD = () => {
+    this.setState({ useHD: true })
+  }
+  noHD = () => {
+    this.setState({ useHD: false })
+  }
 
-    fetchAPODdata( inputDate ){
-      console.log("making api request");
-      // convert selectedDate to a format which can be used by the APOD API
-      inputDate = inputDate.toJSON().slice(0, 10);
+  changeDate = d => {
+    this.setState({
+      selectedDate: d
+    })
+    this.fetchAPODdata(
+      this.setLoadingStatus,
+      this.setErrorStatus,
+      this.updatePODData,
+      d
+    )
+  }
 
-      // create a token which can be used to end api call
-      const CancelToken= axios.CancelToken;
-      const source = CancelToken.source(); 
+  setLoadingStatus = bool => {
+    this.setState({
+      loading: bool
+    })
+  }
 
-      // axios.get(`https://api.nasa.gov/planetary/apod?api_key=gbxiSPUifzAqtMVLZiEswrVn0ikENJtIRYiNpVqy&date=${ inputDate}`,
-      axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${ inputDate}`,
-      { cancelToken : source.token }
-      )
-      // if the the server responds show the results
-      .then( res =>{
-        this.setState({loading : false, pod: res.data})
-        // stop polling server after data has been received
-        source.cancel();
-      })
-      // if there is an error show the error message
-      .catch( err =>{
-        this.setState({loading : false, err})
-      })
-    }// end fetchAPODdata
+  setErrorStatus = (bool, errObject) => {
+    this.setState({
+      error: bool,
+      errData: errObject
+    })
+  }
+
+  updatePODData = data => {
+    this.setState({
+      pod: data
+    })
+  }
+
+  setModalState = () => {
+    this.setState(state => {
+      return { isModalOpen: !state.isModalOpen }
+    })
+  }
 
   componentDidMount() {
-    // this.fetchAPODdata( this.state.selectedDate );
-      } // end componentDidMount
-
-  render () {
-    return (
-      <Potd 
-        appState={ this.state}
-        selectedDate={this.state.selectedDate}
-        pod={this.state.pod} 
-        loading={this.state.loading} 
-        cb={this.changeDate} 
-      />
+    /*
+    this.fetchAPODdata(
+      this.setLoadingStatus,
+      this.setErrorStatus,
+      this.updatePODData,
+      this.state.selectedDate
     )
-  } // end  render
+    */
+  } // end componentDidMount
 
+  renderLoading() {
+    return (
+      <AppWrapper>
+        <AppHeader date={this.state.selectedDate} cb={this.changeDate} />
+        <div>...loading</div>
+      </AppWrapper>
+    )
+  }
 
+  renderSuccess() {
+    // used to set up HD icon
+    let hasHD =
+      this.state.pod.url !== this.state.pod.hdurl &&
+      this.state.pod.hdurl !== null &&
+      this.state.pod.media_type !== 'video'
+        ? true
+        : false
+    console.log(this.state.pod)
+    console.log('process.env', process.env)
+    return (
+      <AppWrapper>
+        <AppHeader
+          selectedDate={this.state.selectedDate}
+          cb={this.changeDate}
+        />
+        <MediaTitle>{this.state.pod.title}</MediaTitle>
+        {this.state.isModalOpen && this.state.pod.media_type !== 'video' && (
+          <FullscreenModal
+            appState={this.state}
+            hasHD={hasHD}
+            preferHDcb={this.preferHD}
+            noHDcb={this.noHD}
+            dateCB={this.changeDate}
+            setModalState={this.setModalState}
+            url={this.state.useHD ? this.state.pod.hdurl : this.state.pod.url}
+          />
+        )}
+
+        {(!this.state.isModalOpen || this.state.pod.media_type === 'video') && (
+          <POTDContainer>
+            <MediaWrapper
+              appState={this.state}
+              url={this.state.pod.url}
+              hdurl={this.state.pod.hdurl}
+              useHD={this.state.useHD}
+              mediaType={this.state.pod.media_type}
+              copyright={this.state.pod.copyright}
+              title={this.state.pod.title}
+              selectedDate={this.state.selectedDate}
+              cb={this.changeDate}
+            />
+            <CntrlsTxtContainer>
+              <Explanation
+                explanation={this.state.pod.explanation}
+                copyright={this.state.pod.copyright}
+              />
+
+              <ImgControls
+                appState={this.state}
+                hdOption={hasHD}
+                preferHDcb={this.preferHD}
+                noHDcb={this.noHD}
+                dateCB={this.changeDate}
+                setModalState={this.setModalState}
+              />
+            </CntrlsTxtContainer>
+          </POTDContainer>
+        )}
+      </AppWrapper>
+    )
+  }
+
+  renderError() {
+    return (
+      <AppWrapper>
+        <p>An error has occured: {this.state.errData.message}</p>
+      </AppWrapper>
+    )
+  }
+
+  render() {
+    if (this.state.loading) {
+      return this.renderLoading()
+    } else if (this.state.pod && !this.state.error) {
+      return this.renderSuccess()
+    } else if (this.state.error) {
+      return this.renderError()
+    }
+  }
 } // end App
 
-export default App;
+export default App

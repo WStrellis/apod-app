@@ -9,8 +9,6 @@ const ImgWrapDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: max-content; */
-  /* width: max-content; */
   height: 100%;
   width: 100%;
   border: 1px solid ${props => props.theme.colors.primaryBlue};
@@ -21,7 +19,6 @@ const ImgWrapDiv = styled.div`
   @media screen and (${props => props.theme.mediaBP.medium}) {
   }
 `
-
 const MediaContainer = styled.div`
   width: 100%;
   display: flex;
@@ -33,9 +30,6 @@ const MediaContainer = styled.div`
     max-width: 62%;
     align-self: flex-start;
   }
-`
-const MediaTitle = styled.h1`
-  font-size: 4rem;
 `
 
 export default class MediaWrapper extends Component {
