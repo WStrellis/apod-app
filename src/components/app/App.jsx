@@ -16,11 +16,7 @@ const POTDContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 2rem 1rem;
-
-  @media screen and (${props => props.theme.mediaBP.large}) {
-    padding: 2rem 2rem;
-  }
+  padding: 0 1rem 2rem 1rem;
 
   @media screen and (${props => props.theme.mediaBP.large}) {
     flex-grow: 1;
@@ -47,9 +43,17 @@ const CntrlsTxtContainer = styled.div`
 `
 
 const MediaTitle = styled.h1`
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-align: center;
+  padding: 0 1rem;
   ${props => props.theme.type.muli};
+  @media screen and (${props => props.theme.mediaBP.medium}) {
+    font-size: 3.25rem;
+  }
+
+  @media screen and (${props => props.theme.mediaBP.large}) {
+    font-size: 4rem;
+  }
 `
 
 class App extends React.Component {

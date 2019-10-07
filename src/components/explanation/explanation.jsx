@@ -28,7 +28,6 @@ const ExpDiv = styled.div`
   }
 `
 const CopyrightLabel = styled.span`
-  font-weight: 700;
   font-style: italic;
 `
 export default function Explanation(props) {
@@ -38,7 +37,8 @@ export default function Explanation(props) {
         <p>{props.explanation}</p>
         {props.copyright && (
           <p>
-            <CopyrightLabel>Image Credit:&emsp;</CopyrightLabel>
+            <CopyrightLabel>Image Credit:</CopyrightLabel>
+            &emsp;
             {props.copyright}
           </p>
         )}
