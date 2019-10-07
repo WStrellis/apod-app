@@ -10,13 +10,17 @@ const ModalBody = styled.div`
   height: 100vh;
   overflow: hidden;
   display: flex;
+  justify-content: center;
   align-items: flex-end;
-  justify-content: flex-end;
   background-color: #000;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  padding-right: 3rem;
+
+  @media screen and (${props => props.theme.mediaBP.medium}) {
+    justify-content: flex-end;
+    padding: 0 2rem 1rem 0;
+  }
 `
 
 export default class FullscreenModal extends Component {
