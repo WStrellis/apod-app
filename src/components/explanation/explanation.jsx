@@ -6,6 +6,7 @@ const ExpDiv = styled.div`
   background-color: ${props => props.theme.colors.primaryBlueTransparent};
   border: 1px solid ${props => props.theme.colors.primaryBlue};
   ${props => props.theme.type.muli};
+  border-radius: ${props => props.theme.border.radiusMD};
   width: 100%;
   min-width: 0;
   min-height: 0;

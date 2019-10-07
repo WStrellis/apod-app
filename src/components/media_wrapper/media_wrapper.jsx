@@ -15,6 +15,7 @@ const ImgWrapDiv = styled.div`
   background-color: ${props => props.theme.colors.primaryBlueTransparent};
   margin: 0 auto;
   padding: 10px;
+  border-radius: ${props => props.theme.border.radiusMD};
 
   @media screen and (${props => props.theme.mediaBP.medium}) {
   }
