@@ -1,38 +1,34 @@
-import React, { Component } from 'react';
-import styled from "styled-components";
-import PropTypes from "prop-types";
-
-/**
- * Renders the photo of the day if it is a video
- */
+import React, { Component } from 'react'
+import { AppContext } from '../../context/AppContext'
+import styled from 'styled-components'
 
 const StyledIF = styled.iframe`
   width: 280px;
   height: 280px;
 
-  @media screen and ( ${ props => props.theme.mediaBP.medium } ){
+  @media screen and (${props => props.theme.mediaBP.medium}) {
     width: 750px;
     height: 421px;
-  };
+  }
 
-  @media screen and ( ${ props => props.theme.mediaBP.large } ){
+  @media screen and (${props => props.theme.mediaBP.large}) {
     width: 1150px;
     height: 657px;
-  };
-`;
+  }
+`
 
- /** @components */
 export default class VidBlock extends Component {
-
   render() {
+    const { pod } = this.context
     return (
-         <StyledIF src={ this.props.url } frameborder="0" title= { this.props.title } allowFullScreen></StyledIF>
+      <StyledIF
+        src={pod.url}
+        frameborder='0'
+        title={pod.title}
+        allowFullScreen
+      ></StyledIF>
     )
   }
-}// end VidBlock
+} // end VidBlock
 
-VidBlock.propTypes = {
-  /* URL : the url to the image */
-  url : PropTypes.string,
-  title : PropTypes.string
-};
+VidBlock.contextType = AppContext

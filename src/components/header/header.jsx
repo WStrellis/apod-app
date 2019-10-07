@@ -66,10 +66,7 @@ export default class AppHeader extends Component {
       <HeaderContainer>
         <Logo />
         <StyledH1>Astronomy Photo of The Day</StyledH1>
-        <DateSelector
-          selectedDate={this.props.selectedDate}
-          cb={this.props.cb}
-        />
+        <DateSelector />
       </HeaderContainer>
     )
   }

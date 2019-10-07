@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
 import styled from 'styled-components'
+import { AppContext } from '../../context/AppContext'
 
 import ImgBlock from '../img_block/img_block.jsx'
 import VidBlock from '../video_block/video_block.jsx'
@@ -35,20 +35,16 @@ const MediaContainer = styled.div`
 
 export default class MediaWrapper extends Component {
   render() {
+    const { pod } = this.context
     return (
       <MediaContainer>
         <ImgWrapDiv>
-          {this.props.mediaType === 'video' && (
-            <VidBlock url={this.props.url} title={this.props.title} />
-          )}
-          {this.props.mediaType === 'image' && (
-            <ImgBlock
-              imgSrc={this.props.useHD ? this.props.hdurl : this.props.url}
-              title={this.props.title}
-            ></ImgBlock>
-          )}
+          {pod.media_type === 'video' && <VidBlock />}
+          {pod.media_type === 'image' && <ImgBlock />}
         </ImgWrapDiv>
       </MediaContainer>
     )
   }
 } // end MediaWrapper
+
+MediaWrapper.contextType = AppContext

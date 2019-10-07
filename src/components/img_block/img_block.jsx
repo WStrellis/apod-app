@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { AppContext } from '../../context/AppContext'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 /**
  * Renders the photo of the day
@@ -22,21 +22,15 @@ const StyledImg = styled.img`
   }
 `
 
-/** @components */
 export default class ImgBlock extends Component {
   render() {
+    const { pod, useHD } = this.context
+    let imgSrc = useHD ? pod.hdurl : pod.url
+
     return (
-      <StyledImg
-        src={this.props.imgSrc}
-        title={this.props.title}
-        alt={this.props.title}
-      ></StyledImg>
+      <StyledImg src={imgSrc} title={pod.title} alt={pod.title}></StyledImg>
     )
   }
 } // end ImgBlock
 
-ImgBlock.propTypes = {
-  /* URL : the url to the image */
-  url: PropTypes.string,
-  title: PropTypes.string
-}
+ImgBlock.contextType = AppContext

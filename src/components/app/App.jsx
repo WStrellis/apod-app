@@ -5,8 +5,8 @@ import MediaWrapper from '../media_wrapper/media_wrapper.jsx'
 import Explanation from '../explanation/explanation.jsx'
 import ImgControls from '../img_controls/img_controls.jsx'
 import FullscreenModal from '../fullscreen-modal/fullscreen-modal.jsx'
-
 import styled from 'styled-components'
+import { AppContext } from '../../context/AppContext'
 
 import fetchAPODdata from '../../js/fetch_data'
 
@@ -66,17 +66,19 @@ class App extends React.Component {
       pod: null,
       selectedDate: new Date(),
       useHD: false,
-      isModalOpen: false
+      isModalOpen: false,
+      setHD: this.setHD,
+      setModalState: this.setModalState,
+      changeDate: this.changeDate
     }
 
     this.fetchAPODdata = fetchAPODdata.bind(this)
   }
 
-  preferHD = () => {
-    this.setState({ useHD: true })
-  }
-  noHD = () => {
-    this.setState({ useHD: false })
+  setHD = () => {
+    this.setState(state => {
+      return { useHD: !state.useHD }
+    })
   }
 
   changeDate = d => {
@@ -127,72 +129,38 @@ class App extends React.Component {
 
   renderLoading() {
     return (
-      <AppWrapper>
-        <AppHeader date={this.state.selectedDate} cb={this.changeDate} />
-        <div>...loading</div>
-      </AppWrapper>
+      <AppContext.Provider value={this.state}>
+        <AppWrapper>
+          <AppHeader />
+          <div>...loading</div>
+        </AppWrapper>
+      </AppContext.Provider>
     )
   }
-
   renderSuccess() {
-    // used to set up HD icon
-    let hasHD =
-      this.state.pod.url !== this.state.pod.hdurl &&
-      this.state.pod.hdurl !== null &&
-      this.state.pod.media_type !== 'video'
-        ? true
-        : false
     console.log(this.state.pod)
+    console.log('app state', this.state)
     return (
-      <AppWrapper>
-        <AppHeader
-          selectedDate={this.state.selectedDate}
-          cb={this.changeDate}
-        />
-        <MediaTitle>{this.state.pod.title}</MediaTitle>
-        {this.state.isModalOpen && this.state.pod.media_type !== 'video' && (
-          <FullscreenModal
-            appState={this.state}
-            hasHD={hasHD}
-            preferHDcb={this.preferHD}
-            noHDcb={this.noHD}
-            dateCB={this.changeDate}
-            setModalState={this.setModalState}
-            url={this.state.useHD ? this.state.pod.hdurl : this.state.pod.url}
-          />
-        )}
+      <AppContext.Provider value={this.state}>
+        <AppWrapper>
+          <AppHeader />
+          <MediaTitle>{this.state.pod.title}</MediaTitle>
+          {this.state.isModalOpen && this.state.pod.media_type !== 'video' && (
+            <FullscreenModal />
+          )}
 
-        {(!this.state.isModalOpen || this.state.pod.media_type === 'video') && (
-          <POTDContainer>
-            <MediaWrapper
-              appState={this.state}
-              url={this.state.pod.url}
-              hdurl={this.state.pod.hdurl}
-              useHD={this.state.useHD}
-              mediaType={this.state.pod.media_type}
-              copyright={this.state.pod.copyright}
-              title={this.state.pod.title}
-              selectedDate={this.state.selectedDate}
-              cb={this.changeDate}
-            />
-            <CntrlsTxtContainer>
-              <Explanation
-                explanation={this.state.pod.explanation}
-                copyright={this.state.pod.copyright}
-              />
-
-              <ImgControls
-                appState={this.state}
-                hdOption={hasHD}
-                preferHDcb={this.preferHD}
-                noHDcb={this.noHD}
-                dateCB={this.changeDate}
-                setModalState={this.setModalState}
-              />
-            </CntrlsTxtContainer>
-          </POTDContainer>
-        )}
-      </AppWrapper>
+          {(!this.state.isModalOpen ||
+            this.state.pod.media_type === 'video') && (
+            <POTDContainer>
+              <MediaWrapper />
+              <CntrlsTxtContainer>
+                <Explanation />
+                <ImgControls />
+              </CntrlsTxtContainer>
+            </POTDContainer>
+          )}
+        </AppWrapper>
+      </AppContext.Provider>
     )
   }
 

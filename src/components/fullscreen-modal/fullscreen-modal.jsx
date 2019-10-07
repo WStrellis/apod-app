@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { AppContext } from '../../context/AppContext'
 import styled from 'styled-components'
 import ImgControls from '../img_controls/img_controls'
 
@@ -33,17 +34,15 @@ export default class FullscreenModal extends Component {
   }
 
   render() {
+    const { pod, useHD } = this.context
+    let imgSrc = useHD ? pod.hdurl : pod.url
+
     return (
-      <ModalBody style={{ backgroundImage: `url( ${this.props.url} )` }}>
-        <ImgControls
-          appState={this.props.appState}
-          hdOption={this.props.hasHD}
-          preferHDcb={this.props.preferHDcb}
-          noHDcb={this.props.noHDcb}
-          dateCB={this.props.dateCB}
-          setModalState={this.props.setModalState}
-        />
+      <ModalBody style={{ backgroundImage: `url( ${imgSrc} )` }}>
+        <ImgControls />
       </ModalBody>
     )
   }
 }
+
+FullscreenModal.contextType = AppContext

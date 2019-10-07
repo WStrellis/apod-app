@@ -10,8 +10,9 @@ import CompressIcon from '../icons/compress.jsx'
 import HDIcon from '../icons/hd.jsx'
 
 import { nextDay, prevDay, randomDayBetween } from '../../js/date_funcs.js'
-
 import { isSameDay } from 'date-fns'
+
+import { AppContext } from '../../context/AppContext'
 
 const ImgControlsDiv = styled.div`
   position: relative;
@@ -47,33 +48,39 @@ export default class ImgControls extends Component {
   }
 
   render() {
-    let selected = this.props.appState.selectedDate
+    let {
+      pod,
+      isModalOpen,
+      useHD,
+      selectedDate,
+      setHD,
+      setModalState,
+      changeDate
+    } = this.context
 
-    //  selected === earliestDate set to "disabled", else activate
-    let prevStatus = isSameDay(selected, this.earliestDate)
+    //  selectedDate === earliestDate set to "disabled", else activate
+    let prevStatus = isSameDay(selectedDate, this.earliestDate)
       ? 'disable'
       : 'activate'
 
-    //  selected === currentDate set to "disabled", else activate
-    let nextStatus = isSameDay(selected, this.currentDate)
+    //  selectedDate === currentDate set to "disabled", else activate
+    let nextStatus = isSameDay(selectedDate, this.currentDate)
       ? 'disable'
       : 'activate'
 
-    let hdStatus = this.props.hdOption === true ? 'activate' : 'disable'
+    let hdStatus =
+      pod.url !== pod.hdurl && pod.hdurl !== null && pod.media_type !== 'video'
+        ? 'activate'
+        : 'disable'
 
-    let isVideo =
-      this.props.appState.pod.media_type === 'video' ? 'disable' : 'activate'
-
-    let hdToggle = this.props.appState.useHD
-      ? this.props.noHDcb
-      : this.props.preferHDcb
+    let isVideo = pod.media_type === 'video' ? 'disable' : 'activate'
 
     return (
       <ImgControlsDiv>
         <TopRow>
           <BtnContainer
             status={prevStatus}
-            clickHandler={() => this.props.dateCB(prevDay(selected))}
+            clickHandler={() => changeDate(prevDay(selectedDate))}
           >
             <HexIcon status={prevStatus} />
             <ArrowIcon direction={'left'} status={prevStatus} />
@@ -82,9 +89,7 @@ export default class ImgControls extends Component {
           <BtnContainer
             status={'activate'}
             clickHandler={() => {
-              this.props.dateCB(
-                randomDayBetween(this.currentDate, this.earliestDate)
-              )
+              changeDate(randomDayBetween(this.currentDate, this.earliestDate))
             }}
           >
             <HexIcon status={'activate'} />
@@ -93,7 +98,7 @@ export default class ImgControls extends Component {
 
           <BtnContainer
             status={nextStatus}
-            clickHandler={() => this.props.dateCB(nextDay(selected))}
+            clickHandler={() => changeDate(nextDay(selectedDate))}
           >
             <HexIcon status={nextStatus} />
             <ArrowIcon direction={'right'} status={nextStatus} />
@@ -101,27 +106,25 @@ export default class ImgControls extends Component {
         </TopRow>
 
         <BottomRow>
-          <BtnContainer
-            status={isVideo}
-            clickHandler={() => this.props.setModalState()}
-          >
+          <BtnContainer status={isVideo} clickHandler={() => setModalState()}>
             <HexIcon status={isVideo} />
-            {this.props.appState.isModalOpen &&
-              this.props.appState.pod.media_type !== 'video' && (
-                <CompressIcon status={isVideo} />
-              )}
-            {(!this.props.appState.isModalOpen ||
-              this.props.appState.pod.media_type === 'video') && (
+            {isModalOpen && pod.media_type !== 'video' && (
+              <CompressIcon status={isVideo} />
+            )}
+            {(!isModalOpen || pod.media_type === 'video') && (
               <ExpandIcon status={isVideo} />
             )}
           </BtnContainer>
 
-          <BtnContainer status={hdStatus} clickHandler={() => hdToggle()}>
+          <BtnContainer status={hdStatus} clickHandler={() => setHD()}>
             <HexIcon status={hdStatus} />
-            <HDIcon status={hdStatus} useHD={this.props.appState.useHD} />
+            <HDIcon status={hdStatus} useHD={useHD} />
           </BtnContainer>
         </BottomRow>
       </ImgControlsDiv>
     )
   }
 }
+
+// Assign context object
+ImgControls.contextType = AppContext

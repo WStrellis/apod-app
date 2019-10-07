@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import CustomScroll from 'react-custom-scroll'
+import { AppContext } from '../../context/AppContext'
 
 const ExpDiv = styled.div`
   background-color: ${props => props.theme.colors.primaryBlueTransparent};
@@ -33,17 +34,21 @@ const CopyrightLabel = styled.span`
 `
 export default function Explanation(props) {
   return (
-    <ExpDiv>
-      <CustomScroll heightRelativeToParent='100%' allowOuterScroll>
-        <p>{props.explanation}</p>
-        {props.copyright && (
-          <p>
-            <CopyrightLabel>Image Credit:</CopyrightLabel>
-            &emsp;
-            {props.copyright}
-          </p>
-        )}
-      </CustomScroll>
-    </ExpDiv>
+    <AppContext.Consumer>
+      {({ pod }) => (
+        <ExpDiv>
+          <CustomScroll heightRelativeToParent='100%' allowOuterScroll>
+            <p>{pod.explanation}</p>
+            {pod.copyright && (
+              <p>
+                <CopyrightLabel>Image Credit:</CopyrightLabel>
+                &emsp;
+                {pod.copyright}
+              </p>
+            )}
+          </CustomScroll>
+        </ExpDiv>
+      )}
+    </AppContext.Consumer>
   )
 }
