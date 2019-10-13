@@ -1,14 +1,19 @@
 import React from 'react'
+// Styled
+import styled from 'styled-components'
+//Context object
+import { AppContext } from '../../context/AppContext'
+// Utils
+import fetchAPODdata from '../../js/fetch_data'
+
+// Components
 import AppWrapper from '../app_wrapper/app_wrapper.jsx'
 import AppHeader from '../header/header.jsx'
 import MediaWrapper from '../media_wrapper/media_wrapper.jsx'
 import Explanation from '../explanation/explanation.jsx'
 import ImgControls from '../img_controls/img_controls.jsx'
 import FullscreenModal from '../fullscreen-modal/fullscreen-modal.jsx'
-import styled from 'styled-components'
-import { AppContext } from '../../context/AppContext'
-
-import fetchAPODdata from '../../js/fetch_data'
+import LoadingWrapper from '../loading/loading_wrapper'
 
 const POTDContainer = styled.div`
   display: flex;
@@ -130,10 +135,7 @@ class App extends React.Component {
   renderLoading() {
     return (
       <AppContext.Provider value={this.state}>
-        <AppWrapper>
-          <AppHeader />
-          <div>...loading</div>
-        </AppWrapper>
+        <LoadingWrapper />
       </AppContext.Provider>
     )
   }

@@ -5,6 +5,7 @@ import MediaWrapper from '../media_wrapper/media_wrapper.jsx'
 import Explanation from '../explanation/explanation.jsx'
 import ImgControls from '../img_controls/img_controls.jsx'
 import FullscreenModal from '../fullscreen-modal/fullscreen-modal.jsx'
+import LoadingWrapper from '../loading/loading_wrapper'
 
 import styled from 'styled-components'
 
@@ -59,7 +60,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false,
+      loading: true,
       error: false,
       errData: null,
       pod: {
@@ -133,13 +134,10 @@ class App extends React.Component {
     */
   } // end componentDidMount
 
+  // <AppHeader date={this.state.selectedDate} cb={this.changeDate} />
+  // <div>...loading</div>
   renderLoading() {
-    return (
-      <AppWrapper>
-        <AppHeader date={this.state.selectedDate} cb={this.changeDate} />
-        <div>...loading</div>
-      </AppWrapper>
-    )
+    return <LoadingWrapper />
   }
 
   renderSuccess() {

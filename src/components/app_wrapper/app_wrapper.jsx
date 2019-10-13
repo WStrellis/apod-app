@@ -4,7 +4,7 @@ import Styled from 'styled-components'
 const AppWrap = Styled.div`
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: ' auto auto 1fr';
   grid-template-columns: 1fr;
   grid-gap: 2rem
   background: rgba(0,0,0,1);
