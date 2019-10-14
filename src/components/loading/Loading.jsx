@@ -58,7 +58,7 @@ const LoadingDiv = styled.div`
     border-top: 10px solid ${props => props.theme.colors.primaryBlue};
     border-bottom: 10px solid ${props => props.theme.colors.primaryBlue};
     border-right: 10px solid ${props => props.theme.colors.primaryBlue};
-    animation: ${rotate} 1.7s linear infinite;
+    animation: ${rotate} 1s linear infinite reverse;
     /* animation: ${rotate} 200s linear infinite; */
   }
 
@@ -71,7 +71,7 @@ const LoadingDiv = styled.div`
     border-top: 10px solid ${props => props.theme.colors.primaryBlue};
     border-bottom: 10px solid transparent;
     border-right: 10px solid ${props => props.theme.colors.primaryBlue};
- animation: ${rotate} 1.5s linear infinite;
+    animation: ${rotate} 0.8s linear infinite;
  /* animation: ${rotate} 1000s linear infinite; */
   }
 `
