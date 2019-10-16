@@ -16,11 +16,10 @@ import { AppContext } from '../../context/AppContext'
 
 const ImgControlsDiv = styled.div`
   position: relative;
-  top: 2rem;
-  padding-bottom: 2rem;
+  top: 1.5rem;
 
   @media screen and (${props => props.theme.mediaBP.large}) {
-    padding-bottom: 0;
+    top: 3rem;
   }
 `
 
