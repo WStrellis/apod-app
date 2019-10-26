@@ -175,12 +175,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loading || this.state.error) {
       return this.renderLoading()
     } else if (this.state.pod && !this.state.error) {
       return this.renderSuccess()
-    } else if (this.state.error) {
-      return this.renderError()
     }
   }
 } // end App

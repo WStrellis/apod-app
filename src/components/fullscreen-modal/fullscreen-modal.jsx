@@ -29,8 +29,16 @@ export default class FullscreenModal extends Component {
     super(props)
 
     this.state = {
-      showControls: false
+      showControls: true
     }
+  }
+
+  componentWillMount() {
+    // add event listener. If user moves mouse or touches screen show the controls
+  }
+
+  componentWillUnmount() {
+    // remove event listener
   }
 
   render() {
