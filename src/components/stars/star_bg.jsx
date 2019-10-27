@@ -5,32 +5,40 @@ import { star_config } from './star_config'
 export default class StarBG extends Component {
   constructor(props) {
     super(props)
-    this.windowWidth = 0
-    this.windowHeight = 0
+    this.state = {
+      windowWidth: 0,
+      windowHeight: 0
+    }
   }
 
-  setWindowSize = size => {
-    this.setState(state => {
-      return { ...state, windowWidth: size }
-    })
-  }
-  componentDidUpdate() {
-    const height = window.innerHeight
-    const width = window.innerWidth
-    console.log(width, height)
-    if (this.windowWidth !== width) {
-      // this.setWindowSize(width)
+  setWindowSize = () => {
+    let width = window.innerWidth
+    let height = window.innerHeight
+    if (this.state.innerWidth !== width || window.innerHeight !== height) {
+      this.setState({ windowWidth: width, windowHeight: height })
     }
-    // this.setWindowSize([width, height])
   }
+
+  componentDidMount() {
+    this.setWindowSize()
+    window.addEventListener('resize', this.setWindowSize)
+  }
+
+  componentDidUpdate(prevState) {
+    window.addEventListener('resize', this.setWindowSize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setWindowSize)
+  }
+
   render() {
-    console.log('windowWidth', this.windowWidth)
     return (
       <Particles
         width={window.innerWidth}
         height={window.innerHeight}
         params={star_config}
-        style={{ position: 'absolute' }}
+        className={'star_container'}
       />
     )
   }
