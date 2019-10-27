@@ -24,10 +24,6 @@ export default class StarBG extends Component {
     window.addEventListener('resize', this.setWindowSize)
   }
 
-  componentDidUpdate(prevState) {
-    window.addEventListener('resize', this.setWindowSize)
-  }
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.setWindowSize)
   }

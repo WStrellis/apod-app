@@ -214,7 +214,7 @@ class App extends React.Component {
   render() {
     if (this.state.loading || this.state.error) {
       return this.renderLoading()
-    } else if (this.state.pod && !this.state.error) {
+    } else if (this.state.pod) {
       return this.renderSuccess()
     }
   }
