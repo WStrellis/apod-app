@@ -1,6 +1,7 @@
 import React from 'react'
 import Styled from 'styled-components'
 import Loading from './Loading'
+import StarBG from '../stars/star_bg'
 
 const LoadingWrap = Styled.div`
   overflow: hidden;
@@ -17,6 +18,7 @@ const LoadingWrap = Styled.div`
 export default function LoadingWrapper(props) {
   return (
     <LoadingWrap>
+      <StarBG />
       <Loading />
     </LoadingWrap>
   )
