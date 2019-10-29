@@ -5,6 +5,8 @@ body {
 
 .star_container {
   position: absolute;
+  z-index: -100;
+  background-color: #0c001e;
 }
 
 body {

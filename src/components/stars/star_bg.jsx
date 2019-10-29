@@ -13,7 +13,8 @@ export default class StarBG extends Component {
 
   setWindowSize = () => {
     let width = window.innerWidth
-    let height = window.innerHeight
+    // let height = window.innerHeight
+    let height = document.body.offsetHeight
     if (this.state.innerWidth !== width || window.innerHeight !== height) {
       this.setState({ windowWidth: width, windowHeight: height })
     }

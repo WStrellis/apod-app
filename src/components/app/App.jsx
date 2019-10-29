@@ -132,54 +132,33 @@ class App extends React.Component {
     )
   } // end componentDidMount
 
-  renderLoading() {
-    return (
-      <AppContext.Provider value={this.state}>
-        <LoadingWrapper />
-      </AppContext.Provider>
-    )
-  }
-  renderSuccess() {
-    console.log(this.state.pod)
-    console.log('app state', this.state)
+  render() {
     return (
       <AppContext.Provider value={this.state}>
         <AppWrapper>
-          <AppHeader />
-          <MediaTitle>{this.state.pod.title}</MediaTitle>
-          {this.state.isModalOpen && this.state.pod.media_type !== 'video' && (
-            <FullscreenModal />
-          )}
+          {(this.state.loading || this.state.error) && <LoadingWrapper />}
+          {this.state.pod && !this.state.error && (
+            <>
+              <AppHeader />
+              <MediaTitle>{this.state.pod.title}</MediaTitle>
+              {this.state.isModalOpen &&
+                this.state.pod.media_type !== 'video' && <FullscreenModal />}
 
-          {(!this.state.isModalOpen ||
-            this.state.pod.media_type === 'video') && (
-            <POTDContainer>
-              <MediaWrapper />
-              <CntrlsTxtContainer>
-                <Explanation />
-                <ImgControls />
-              </CntrlsTxtContainer>
-            </POTDContainer>
+              {(!this.state.isModalOpen ||
+                this.state.pod.media_type === 'video') && (
+                <POTDContainer>
+                  <MediaWrapper />
+                  <CntrlsTxtContainer>
+                    <Explanation />
+                    <ImgControls />
+                  </CntrlsTxtContainer>
+                </POTDContainer>
+              )}
+            </>
           )}
         </AppWrapper>
       </AppContext.Provider>
     )
-  }
-
-  renderError() {
-    return (
-      <AppWrapper>
-        <p>An error has occured: {this.state.errData.message}</p>
-      </AppWrapper>
-    )
-  }
-
-  render() {
-    if (this.state.loading || this.state.error) {
-      return this.renderLoading()
-    } else if (this.state.pod && !this.state.error) {
-      return this.renderSuccess()
-    }
   }
 } // end App
 
