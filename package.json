@@ -5,7 +5,7 @@
   "description": "Display space photos from NASA APOD API",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "date-fns": "^2.3.0",
     "node-sass": "^7.0.0",
     "react": "^16.8.6",
