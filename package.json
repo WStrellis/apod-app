@@ -49,6 +49,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.2.0",
-    "react-styleguidist": "^9.1.13"
+    "react-styleguidist": "^9.2.0"
   }
 }
